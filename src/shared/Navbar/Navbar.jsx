@@ -25,7 +25,7 @@ const Navbar = () => {
   }, [prevScrollPos]);
 
   return (
-    <div>
+    <div className="z-50">
       <div
         className={`fixed max-w-7xl bg-[#ffffffbf] border-b-2 font-OpenSans mx-auto right-0 left-0 top-0 py-4 transition-all duration-500 ${
           isScrolled ? "-translate-y-full" : "translate-y-0"
@@ -131,23 +131,23 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
+            <li className="font-Poppins text-[#3d3d47] font-semibold">
               <Link>Home</Link>
             </li>
-            <li>
+            <li className="font-Poppins text-[#3d3d47] font-semibold">
               <Link>Instructors</Link>
             </li>
-            <li>
+            <li className="font-Poppins text-[#3d3d47] font-semibold">
               <Link>Classes</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           <ul className="menu menu-horizontal ">
-            <li>
-              <Link>Login</Link>
+            <li className="font-Poppins text-[#3d3d47] font-semibold">
+              <Link to="/login">Login</Link>
             </li>
-            <li>
+            <li className="font-Poppins text-[#3d3d47] font-semibold">
               <Link>Dashboard</Link>
             </li>
           </ul>

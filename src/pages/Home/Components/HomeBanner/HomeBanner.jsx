@@ -18,12 +18,12 @@ const HomeBanner = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
   return (
-    <div className="mt-40">
+    <div className="mt-40 z-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 10000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         pagination={{

@@ -18,7 +18,7 @@ const HomeBanner = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
   return (
-    <div className="mt-40 z-10">
+    <div className="mt-32 -z-0">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -33,9 +33,9 @@ const HomeBanner = () => {
         modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper">
-        <SwiperSlide>
+        <SwiperSlide className="-z-0">
           <div className="relative">
-            <div className="absolute w-full flex flex-col h-full  justify-center ml-36">
+            <div className="absolute w-full flex flex-col h-full  justify-center ml-36 -z-0">
               <p className="font-Poppins text-3xl text-white w-[500px]">
                 Putting Children First. Preparing Children For Success In Life
               </p>

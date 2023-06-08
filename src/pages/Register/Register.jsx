@@ -3,16 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { AuthContext } from "../../context/AuthProvider";
 import { toast } from "react-hot-toast";
-
 import toastConfig from "../../utils/toastConfig";
 import { useForm } from "react-hook-form";
-
+import SyncLoader from "react-spinners/SyncLoader";
+import axios from "axios";
 const imageHostingSecretToken = import.meta.env.VITE_IMAGE_UPLOAD_SECRET_KEY;
 
 const Registration = () => {
   const { signup, updateUser, setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const imageHostingURL = `https://api.imgbb.com/1/upload?key=${imageHostingSecretToken}`;
+  const [inputPassword, setInputPassword] = useState("");
+  const [inputConfirmPassword, setInputConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -25,32 +28,57 @@ const Registration = () => {
   };
 
   const onsubmit = (data) => {
-    const { name, email, password } = data;
+    const { name, email, password, confirmPassword } = data;
+    setInputPassword(password);
+    setInputConfirmPassword(confirmPassword);
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
-    signup(email, password)
-      .then((result) => {
-        console.log(result.user);
-        setUser(result.user);
-        fetch(imageHostingURL, {
-          method: "POST",
-          body: formData,
-        })
-          .then((res) => res.json())
-          .then((uploadResponse) => {
-            if (uploadResponse.success) {
-              updateUser(name, uploadResponse.data.display_url).then(
-                () => toast.success("Registration Successful!", toastConfig),
-                navigate("/")
-              );
-            }
+    if (password === confirmPassword) {
+      setLoading(true);
+      signup(email, password)
+        .then((result) => {
+          setUser(null);
+          fetch(imageHostingURL, {
+            method: "POST",
+            body: formData,
           })
-          .catch((err) => toast.error(err.message, toastConfig));
-      })
-      .catch((err) => {
-        toast.error(err.message, toastConfig);
-      });
+            .then((res) => res.json())
+            .then((uploadResponse) => {
+              if (uploadResponse.success) {
+                updateUser(name, uploadResponse.data.display_url).then(() => {
+                  const { displayName, email, photoURL } = result.user;
+                  const saveUserInfo = {
+                    name: displayName,
+                    email: email,
+                    profilePictureURL: photoURL,
+                    role: "student"
+                  };
+                  axios
+                    .post("http://localhost:5000/user", saveUserInfo)
+                    .then((res) => {
+                      if (res.data.insertedId) {
+                        toast.success("Registration Successful!", toastConfig);
+                        navigate("/");
+                        setUser(result.user);
+                        setLoading(false);
+                       
+                      }
+                    })
+                    .catch((err) => console.log(err));
+                });
+              }
+            })
+            .catch((err) => {
+              toast.error(err.message, toastConfig);
+              setLoading(false);
+            });
+        })
+        .catch((err) => {
+          toast.error(err.message, toastConfig);
+          setLoading(false);
+        });
+    }
   };
 
   return (
@@ -90,6 +118,20 @@ const Registration = () => {
                   required
                   className="w-full border-gray-300 border-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg py-2 px-4"
                   placeholder="Enter your email"
+                />
+              </div>
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="photoUrl"
+                className="block text-gray-700 font-medium mb-2">
+                Profile Picture
+              </label>
+              <div className="relative">
+                <input
+                  type="file"
+                  {...register("image", { required: true })}
+                  className="file-input w-full file-input-bordered file-input-accent "
                 />
               </div>
             </div>
@@ -148,24 +190,51 @@ const Registration = () => {
             </div>
             <div className="mb-6">
               <label
-                htmlFor="photoUrl"
+                htmlFor="confirmPassword"
                 className="block text-gray-700 font-medium mb-2">
-                Profile Picture
+                Confirm Password
               </label>
               <div className="relative">
                 <input
-                  type="file"
-                  {...register("image", { required: true })}
-                  className="file-input w-full file-input-bordered file-input-accent "
+                  {...register("confirmPassword", {
+                    required: true,
+                  })}
+                  type={showPassword ? "text" : "password"}
+                  className="w-full border-gray-300 border-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg py-2 px-4"
+                  placeholder="Enter your confirm password"
                 />
+                {errors.confirmPassword?.type === "required" && (
+                  <span className="text-sm mt-1 text-red-500">
+                    Confirm Password is required
+                  </span>
+                )}
+                {inputPassword !== inputConfirmPassword && (
+                  <span className="text-sm mt-1 text-red-500">
+                    Password not match
+                  </span>
+                )}
+
+                <div
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                  onClick={handlePasswordToggle}>
+                  {showPassword ? <FiEye /> : <FiEyeOff />}
+                </div>
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300 ">
-              Register
+              disabled={loading}
+              className={`w-full h-10 ${
+                !loading ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
+              } text-white font-medium py-2 px-4 rounded-lg transition duration-300 `}>
+              {loading ? (
+                <SyncLoader loading={loading} size={12} color="#36D7B7" />
+              ) : (
+                "Register"
+              )}
             </button>
+
             <div className="text-center mt-4">
               <Link
                 to="/login"

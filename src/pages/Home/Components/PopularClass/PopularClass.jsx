@@ -5,6 +5,7 @@ const PopularClass = () => {
   return (
     <div>
         <SectionHeading heading="Popular Classes" />
+        
     </div>
   )
 }

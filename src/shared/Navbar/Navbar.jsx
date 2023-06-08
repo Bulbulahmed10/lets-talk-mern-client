@@ -33,9 +33,9 @@ const Navbar = () => {
   }, [prevScrollPos]);
 
   return (
-    <div className="z-50">
+    <div className="z-50 relative">
       <div
-        className={`fixed max-w-7xl bg-[#ffffffbf] border-b-2 font-OpenSans mx-auto right-0 left-0 top-0 py-4 transition-all duration-500 ${
+        className={`fixed max-w-7xl bg-[#fff] border-b-2 font-OpenSans mx-auto right-0 left-0 top-0 py-4 transition-all duration-500 ${
           isScrolled ? "-translate-y-full" : "translate-y-0"
         }`}>
         <div className="flex justify-between items-center ">
@@ -86,7 +86,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`navbar fixed max-w-7xl bg-[#ffffffbf] mx-auto top-0 left-0 right-0  transition-all duration-500 ${
+        className={`navbar fixed max-w-7xl -mt-4 ${isScrolled && '-mt-6 pt-8'} bg-[#ffffffbf] mx-auto top-0 left-0 right-0  transition-all duration-500 ${
           isScrolled ? "translate-y-0" : "translate-y-full"
         }`}>
         <div className="navbar-start">
@@ -110,21 +110,10 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li>
-                <a>Item 1</a>
+                <a className="font-Poppins text-[#3d3d47] font-semibold">Item 1</a>
               </li>
               <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
+                <a className="font-Poppins text-[#3d3d47] font-semibold">Item 3</a>
               </li>
             </ul>
           </div>
@@ -180,7 +169,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                  <a onClick={handleLogOut}>Logout</a>
+                  <a className="font-Poppins text-[#3d3d47] font-semibold" onClick={handleLogOut}>Logout</a>
                 </li>
               </ul>
             </div>

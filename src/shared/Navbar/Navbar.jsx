@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { AiOutlineMobile, AiOutlineMail } from "react-icons/ai";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
@@ -6,12 +6,20 @@ import { BsTwitter } from "react-icons/bs";
 import { SiSkype } from "react-icons/si";
 import logo from "../../assets/lets-talk.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+import noAvatar from "../../assets/no_avatar.png";
 const Navbar = () => {
+  const { user, logout, setUser } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
+  const handleLogOut = () => {
+    logout().then(() => {
+      setUser(null);
+    });
+  };
+
   useEffect(() => {
-    console.log("rendering navbar");
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       setIsScrolled(currentScrollPos > prevScrollPos && currentScrollPos > 0);
@@ -144,31 +152,39 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <ul className="menu menu-horizontal ">
-            <li className="font-Poppins text-[#3d3d47] font-semibold">
-              <Link to="/login">Login</Link>
-            </li>
-            <li className="font-Poppins text-[#3d3d47] font-semibold">
-              <Link>Dashboard</Link>
-            </li>
+            {!user && (
+              <li className="font-Poppins text-[#3d3d47] font-semibold">
+                <Link to="/login">Login</Link>
+              </li>
+            )}
+            {user && (
+              <li className="font-Poppins text-[#3d3d47] font-semibold">
+                <Link>Dashboard</Link>
+              </li>
+            )}
           </ul>
 
-          <div className="dropdown dropdown-hover dropdown-end">
-            <label tabIndex={0} className="cursor-pointer">
-              <img
-                className="w-10 h-10 object-cover rounded-full dropdown
+          {user && (
+            <div className="dropdown dropdown-hover dropdown-end">
+              <label tabIndex={0} className="cursor-pointer">
+                <img
+                  className="w-10 h-10 object-cover rounded-full dropdown
             "
-                src="https://images.unsplash.com/photo-1685679585988-529dae9b214b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=755&q=80"
-                alt=""
-              />
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
+                  src={user && user?.photoURL ? user?.photoURL : noAvatar}
+                  alt={
+                    user && user?.displayName ? user?.displayName : "Anonymous"
+                  }
+                />
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                  <a onClick={handleLogOut}>Logout</a>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { BsGoogle } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { toast } from "react-hot-toast";
-import firebaseErrorEdit from "../../utils/firebaseErrorEdit";
+
 import toastConfig from "../../utils/toastConfig";
 import { AuthContext } from "../../context/AuthProvider";
 
@@ -18,11 +18,10 @@ const Login = () => {
         const signInUser = result;
         setUser(signInUser);
         navigate(from, { replace: true });
-        setLoading(false);
+
       })
       .catch((err) => {
-        const firebaseNotification = firebaseErrorEdit(err);
-        toast.error(firebaseNotification, toastConfig);
+        toast.error(err.message, toastConfig);
       });
   };
   const handleSignIn = (e) => {
@@ -35,11 +34,9 @@ const Login = () => {
         const loginInUser = result.user;
         toast.success("User Login Successfully", toastConfig);
         navigate(from, { replace: true });
-        setLoading(false);
       })
       .catch((err) => {
-        const firebaseNotification = firebaseErrorEdit(err);
-        toast.error(firebaseNotification, toastConfig);
+        toast.error(err.message, toastConfig);
       });
   };
 

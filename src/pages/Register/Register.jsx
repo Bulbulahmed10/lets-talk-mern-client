@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { AuthContext } from "../../context/AuthProvider";
 import { toast } from "react-hot-toast";
-import firebaseErrorEdit from "../../utils/firebaseErrorEdit";
+
 import toastConfig from "../../utils/toastConfig";
 import { useForm } from "react-hook-form";
 
@@ -30,7 +30,9 @@ const Registration = () => {
     formData.append("image", data.image[0]);
 
     signup(email, password)
-      .then(() => {
+      .then((result) => {
+        console.log(result.user);
+        setUser(result.user);
         fetch(imageHostingURL, {
           method: "POST",
           body: formData,
@@ -38,18 +40,16 @@ const Registration = () => {
           .then((res) => res.json())
           .then((uploadResponse) => {
             if (uploadResponse.success) {
-              updateUser(name, uploadResponse.data.display_url)
-                .then(
-                  () => toast.success("Registration Successful!", toastConfig),
-                  navigate("/")
-                )
-                .catch((err) => toast.error(err.message, toastConfig));
+              updateUser(name, uploadResponse.data.display_url).then(
+                () => toast.success("Registration Successful!", toastConfig),
+                navigate("/")
+              );
             }
           })
           .catch((err) => toast.error(err.message, toastConfig));
       })
       .catch((err) => {
-        toast.error(firebaseErrorEdit(err), toastConfig);
+        toast.error(err.message, toastConfig);
       });
   };
 

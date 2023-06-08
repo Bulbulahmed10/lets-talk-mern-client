@@ -1,8 +1,9 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -27,12 +28,32 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUser = (name, photoUrl) => {
-    console.log(auth.currentUser);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoUrl,
     });
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      // get and set token
+      // if (currentUser) {
+      //   axios
+      //     .post("http://localhost:5000/jwt", { email: currentUser.email })
+      //     .then((data) => {
+      //       // console.log(data.data.token)
+      //       localStorage.setItem("access-token", data.data.token);
+      //       setLoading(false);
+      //     });
+      // } else {
+      //   localStorage.removeItem("access-token");
+      // }
+    });
+    return () => {
+      return unsubscribe();
+    };
+  }, []);
 
   const logout = () => {
     return signOut(auth);

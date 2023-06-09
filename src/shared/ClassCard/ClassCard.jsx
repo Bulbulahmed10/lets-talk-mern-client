@@ -1,6 +1,12 @@
 import React from "react";
 import { AiOutlineClockCircle, AiOutlineBook } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
+import useAuthContext from "../../hooks/useAuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import toastConfig from "../../utils/toastConfig";
 const ClassCard = ({ singleTopClass }) => {
   const {
     class_image,
@@ -10,7 +16,41 @@ const ClassCard = ({ singleTopClass }) => {
     price,
     total_sets,
     enrolledStudentsId,
+    _id,
   } = singleTopClass;
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  const handleAddToCart = () => {
+    if (user && user?.email) {
+      const classInfo = {
+        class_id: _id,
+        cart_owner: user?.email,
+        class_image,
+        instructor_name,
+        price,
+      };
+      axios.post("http://localhost:5000/cart", classInfo).then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Class added your cart", toastConfig);
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "Can't add to cart without login",
+        text: "Do you want to login?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes I want to login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    }
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
       <img
@@ -41,11 +81,12 @@ const ClassCard = ({ singleTopClass }) => {
           </div>
         </div>
         <div className="flex  items-center justify-between">
-        <p className="text-gray-700 text-2xl font-semibold">${price}</p>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md">
-            Enroll Now
+          <p className="text-gray-700 text-2xl font-semibold">${price}</p>
+          <button
+            onClick={handleAddToCart}
+            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md">
+            Add to Cart
           </button>
-          
         </div>
       </div>
     </div>

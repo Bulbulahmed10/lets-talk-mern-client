@@ -30,4 +30,5 @@ const PopularClass = () => {
   );
 };
 
+
 export default PopularClass;

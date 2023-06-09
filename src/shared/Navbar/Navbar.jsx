@@ -8,11 +8,12 @@ import logo from "../../assets/lets-talk.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import noAvatar from "../../assets/no_avatar.png";
+import useCart from "../../hooks/useCart";
 const Navbar = () => {
   const { user, logout, setUser } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
-
+  const [carts] = useCart();
   const handleLogOut = () => {
     logout().then(() => {
       setUser(null);
@@ -86,7 +87,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`navbar fixed max-w-7xl -mt-4 ${
+        className={`navbar fixed max-w-7xl -mt-6 ${
           isScrolled && "-mt-6 pt-8"
         } bg-[#ffffffbf] mx-auto top-0 left-0 right-0  transition-all duration-500 ${
           isScrolled ? "translate-y-0" : "translate-y-full"
@@ -162,7 +163,7 @@ const Navbar = () => {
                     <div className="indicator">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
+                        className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -173,8 +174,8 @@ const Navbar = () => {
                           d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                         />
                       </svg>
-                      <span className="badge badge-sm indicator-item text-violet-500 font-bold">
-                        8
+                      <span className="badge badge-md indicator-item text-violet-500 font-bold text-base">
+                        {carts && carts?.length > 0 ? carts?.length : 0}
                       </span>
                     </div>
                   </label>
@@ -182,12 +183,21 @@ const Navbar = () => {
                     tabIndex={0}
                     className="card card-compact dropdown-content w-52 bg-base-100 shadow hover:bg-white">
                     <div className="card-body">
-                      <span className="font-bold text-lg">8 Items</span>
-                      <span className="text-info">Subtotal: $999</span>
+                      <span className="font-bold text-lg">
+                        {carts && carts?.length > 0 ? carts?.length : 0} Items
+                      </span>
+                      <span className="text-info">
+                        Subtotal: $
+                        {carts &&
+                          carts?.length > 0 &&
+                          carts.reduce((acc, curr) => acc + curr.price, 0)}
+                      </span>
                       <div className="card-actions">
-                        <button className="btn btn-primary btn-block">
+                        <Link
+                          to="/dashboard/cart"
+                          className="btn btn-primary btn-block">
                           View cart
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>

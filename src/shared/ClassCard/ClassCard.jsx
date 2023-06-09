@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import toastConfig from "../../utils/toastConfig";
+import useCart from "../../hooks/useCart";
 const ClassCard = ({ singleTopClass }) => {
   const {
     class_image,
@@ -19,18 +20,21 @@ const ClassCard = ({ singleTopClass }) => {
     _id,
   } = singleTopClass;
   const { user } = useAuthContext();
+  const [, refetch] = useCart();
   const navigate = useNavigate();
   const handleAddToCart = () => {
     if (user && user?.email) {
       const classInfo = {
         class_id: _id,
         cart_owner: user?.email,
+        class_name,
         class_image,
         instructor_name,
         price,
       };
       axios.post("http://localhost:5000/cart", classInfo).then((res) => {
         if (res.data.insertedId) {
+          refetch()
           toast.success("Class added your cart", toastConfig);
         }
       });

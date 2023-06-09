@@ -56,8 +56,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
           });
       } else {
-        localStorage.removeItem("access-token");
-        setLoading(false);
+        localStorage.removeItem("lets-talk-auth-access-token");
       }
     });
     return () => {
@@ -77,7 +76,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     updateUser,
     logout,
-    loading
+    loading,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>

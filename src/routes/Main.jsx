@@ -3,8 +3,9 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-import DashBoard from "../pages/DashBoard/DashBoard";
 import PrivateRoutes from "./PrivateRoutes";
+import DashBoard from "../layout/DashBoard";
+import Cart from "../pages/DashBoard/Cart";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,12 @@ const router = createBrowserRouter([
             <DashBoard />
           </PrivateRoutes>
         ),
+        children: [
+          {
+            path: "cart",
+            element: <Cart />,
+          },
+        ],
       },
     ],
   },

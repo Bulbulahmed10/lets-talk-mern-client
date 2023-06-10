@@ -5,7 +5,10 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import DashBoard from "../layout/DashBoard";
-import Cart from "../pages/DashBoard/Cart";
+import Cart from "../pages/DashBoard/Cart/Cart";
+import StripePayment from "../pages/DashBoard/Payment/StripePayment";
+import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +37,14 @@ const router = createBrowserRouter([
           {
             path: "cart",
             element: <Cart />,
+          },
+          {
+            path: "stripe-payment",
+            element: <StripePayment />,
+          },
+          {
+            path: "payment-history",
+            element: <PaymentHistory />,
           },
         ],
       },

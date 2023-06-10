@@ -87,9 +87,9 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`navbar fixed max-w-7xl -mt-6 ${
-          isScrolled && "-mt-6 pt-8"
-        } bg-[#ffffffbf] mx-auto top-0 left-0 right-0  transition-all duration-500 ${
+        className={`navbar fixed max-w-7xl -mt-10 ${
+          isScrolled && "-mt-8 pt-10"
+        } bg-[#ffffff] mx-auto top-0 left-0 right-0  transition-all duration-500 ${
           isScrolled ? "translate-y-0" : "translate-y-full"
         }`}>
         <div className="navbar-start">
@@ -147,7 +147,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <ul className="menu menu-horizontal items-center ">
+          <ul className="menu menu-horizontal items-center gap-4">
             {!user && (
               <li className="font-Poppins text-[#3d3d47] font-semibold">
                 <Link to="/login">Login</Link>
@@ -163,7 +163,7 @@ const Navbar = () => {
                     <div className="indicator">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
+                        className="h- w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -181,16 +181,16 @@ const Navbar = () => {
                   </label>
                   <div
                     tabIndex={0}
-                    className="card card-compact dropdown-content w-52 bg-base-100 shadow hover:bg-white">
+                    className="card card-compact dropdown-content w-52 bg-base-100 shadow ">
                     <div className="card-body">
                       <span className="font-bold text-lg">
                         {carts && carts?.length > 0 ? carts?.length : 0} Items
                       </span>
                       <span className="text-info">
                         Subtotal: $
-                        {carts &&
-                          carts?.length > 0 &&
-                          carts.reduce((acc, curr) => acc + curr.price, 0)}
+                        {carts && carts?.length > 0
+                          ? carts.reduce((acc, curr) => acc + curr.price, 0)
+                          : "0"}
                       </span>
                       <div className="card-actions">
                         <Link
@@ -202,35 +202,34 @@ const Navbar = () => {
                     </div>
                   </div>
                 </li>
+                <div className="dropdown dropdown-hover dropdown-end">
+                  <label tabIndex={0} className="cursor-pointer">
+                    <img
+                      className="w-10 h-10 object-cover rounded-full dropdown
+            "
+                      src={user && user?.photoURL ? user?.photoURL : noAvatar}
+                      alt={
+                        user && user?.displayName
+                          ? user?.displayName
+                          : "Anonymous"
+                      }
+                    />
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li>
+                      <a
+                        className="font-Poppins text-[#3d3d47] font-semibold"
+                        onClick={handleLogOut}>
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </>
             )}
           </ul>
-
-          {user && (
-            <div className="dropdown dropdown-hover dropdown-end">
-              <label tabIndex={0} className="cursor-pointer">
-                <img
-                  className="w-10 h-10 object-cover rounded-full dropdown
-            "
-                  src={user && user?.photoURL ? user?.photoURL : noAvatar}
-                  alt={
-                    user && user?.displayName ? user?.displayName : "Anonymous"
-                  }
-                />
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li>
-                  <a
-                    className="font-Poppins text-[#3d3d47] font-semibold"
-                    onClick={handleLogOut}>
-                    Logout
-                  </a>
-                </li>
-              </ul>
-            </div>
-          )}
         </div>
       </div>
     </div>

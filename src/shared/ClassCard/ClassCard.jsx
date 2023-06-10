@@ -88,7 +88,7 @@ const ClassCard = ({ singleTopClass }) => {
           <p className="text-gray-700 text-2xl font-semibold">${price}</p>
           <button
             onClick={handleAddToCart}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md">
+            className="btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md">
             Add to Cart
           </button>
         </div>

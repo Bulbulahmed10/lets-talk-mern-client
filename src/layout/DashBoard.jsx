@@ -96,9 +96,9 @@ const DashBoard = () => {
           <li onClick={handleLogout}>
             <div className="flex items-center gap-4">
               <AiOutlineLogin className="w-6 h-6" />
-              <button className="font-Poppins text-[#3d3d47] font-semibold">
+              <span className="font-Poppins text-[#3d3d47] font-semibold">
                 Logout
-              </button>
+              </span>
             </div>
           </li>
         </ul>

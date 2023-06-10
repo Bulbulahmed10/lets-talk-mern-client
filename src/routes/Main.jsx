@@ -11,7 +11,6 @@ import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
 import EnrolledClass from "../pages/DashBoard/EnrolledClass/EnrolledClass";
 import AddClass from "../pages/DashBoard/AddClass/AddClass";
 import MyClass from "../pages/DashBoard/MyClass/MyClass";
-import InstructorClassFeedback from "../pages/DashBoard/InstructorClassFeedback/InstructorClassFeedback";
 import ManageClasses from "../pages/DashBoard/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/DashBoard/ManageUsers/ManageUsers";
 import AdminFeedHistory from "../pages/DashBoard/AdminFeedbackHistory/AdminFeedHistory";
@@ -72,14 +71,6 @@ const router = createBrowserRouter([
             element: (
               <InstructorRoutes>
                 <MyClass />
-              </InstructorRoutes>
-            ),
-          },
-          {
-            path: "my-class-feedback",
-            element: (
-              <InstructorRoutes>
-                <InstructorClassFeedback />
               </InstructorRoutes>
             ),
           },

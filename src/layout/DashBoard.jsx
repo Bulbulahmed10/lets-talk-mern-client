@@ -128,16 +128,6 @@ const DashBoard = () => {
                   </Link>
                 </div>
               </li>
-              <li>
-                <div className="flex items-center gap-4">
-                  <MdOutlineFeedback className="w-6 h-6" />
-                  <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
-                    to="/dashboard/my-class-feedback">
-                    My Class Feedback
-                  </Link>
-                </div>
-              </li>
             </>
           )}
           {isAdmin && (

@@ -2,6 +2,7 @@ import React from "react";
 import useAxiosSecureRequest from "../../../hooks/useAxiosSecureRequest";
 import useAuthContext from "../../../hooks/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
+import LoadingAnimation from "../../../shared/LoadingAnimation/LoadingAnimation";
 
 const MyClass = () => {
   const { user } = useAuthContext();
@@ -36,6 +37,7 @@ const MyClass = () => {
               <th>Action</th>
             </tr>
           </thead>
+          {isLoading && <LoadingAnimation />}
           <tbody>
             {myClassData?.map((singleClassData, index) => {
               const {

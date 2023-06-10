@@ -29,9 +29,10 @@ const AddClass = () => {
       axios
         .post(imageHostingURL, formData)
         .then((res) => {
-          setLoading(true);
           console.log(res.data);
+          // setLoading(true);
           if (res.data.success) {
+            console.log(res.data.display_url);
             const classInfo = {
               class_name: className,
               class_code: classCode,
@@ -42,9 +43,10 @@ const AddClass = () => {
               total_sets: parseInt(totalSets),
               price: parseInt(price),
               approved_status: "pending",
-              class_image: res?.data?.display_url,
-              feedback: ""
+              class_image: res.data.display_url,
+              feedback: "",
             };
+            console.log(classInfo);
             axiosSecureRequest
               .post("/addClass", classInfo)
               .then((res) => {
@@ -184,6 +186,7 @@ const AddClass = () => {
               {...register("price", { required: true })}
               type="number"
               className="w-full border-gray-300 border-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg py-2 px-4"
+              placeholder="Price"
             />
           </div>
         </div>

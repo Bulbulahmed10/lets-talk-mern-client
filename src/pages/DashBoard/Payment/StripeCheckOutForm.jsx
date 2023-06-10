@@ -73,9 +73,9 @@ const StripeCheckOutForm = ({ parsableTotalPrice, carts, refetch }) => {
         date: new Date(),
         price: parsableTotalPrice,
         quantity: carts.length,
+        instructor_name: carts.map(item => item.instructor_name) ,
         cartItems: carts.map((item) => item._id),
         classItems: carts.map((item) => item.class_id),
-        orderStatus: "pending",
         className: carts.map((item) => item.class_name),
       };
 

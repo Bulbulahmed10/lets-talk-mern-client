@@ -16,7 +16,7 @@ const DashBoard = () => {
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <div className="drawer-content flex flex-col items-center justify-center ">
         <Outlet />
         <label
           htmlFor="my-drawer-2"
@@ -24,7 +24,7 @@ const DashBoard = () => {
           Open drawer
         </label>
       </div>
-      <div className="drawer-side h-fit">
+      <div className="drawer-side h-fit ">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
           {/* Sidebar content here */}
@@ -77,7 +77,7 @@ const DashBoard = () => {
               <SiGoogleclassroom className="w-6 h-6" />
               <Link
                 className="font-Poppins text-[#3d3d47] font-semibold"
-                to="/dashboard/cart">
+                to="/dashboard/enrolled-class">
                 My Enrolled Class
               </Link>
             </div>

@@ -8,6 +8,7 @@ import DashBoard from "../layout/DashBoard";
 import Cart from "../pages/DashBoard/Cart/Cart";
 import StripePayment from "../pages/DashBoard/Payment/StripePayment";
 import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
+import EnrolledClass from "../pages/DashBoard/EnrolledClass/EnrolledClass";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: "cart",
             element: <Cart />,
+          },
+          {
+            path: "enrolled-class",
+            element: <EnrolledClass />
           },
           {
             path: "stripe-payment",

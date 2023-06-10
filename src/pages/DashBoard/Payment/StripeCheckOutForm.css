@@ -1,4 +1,4 @@
-/* These styles are used if a demo specific stylesheet is not present */
+/* These styles are used if a demo specific stylesheet is not present
 
 *,
 *:before,
@@ -138,4 +138,4 @@ More info: https://stripe.com/docs/stripe-js/reference#element-options
 .StripeElementEPS,
 .StripeElementFpx {
   padding: 0;
-}
+} */

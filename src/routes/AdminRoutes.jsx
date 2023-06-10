@@ -8,7 +8,7 @@ const AdminRoutes = ({ children }) => {
   const [isAdmin, isAdminLoading] = useAdmin();
   const location = useLocation();
 
-  if (loading && isAdminLoading) {
+  if (loading || isAdminLoading) {
     return <LoadingAnimation />;
   }
   if (user && isAdmin) {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import useAxiosSecureRequest from "../../../hooks/useAxiosSecureRequest";
 import useAuthContext from "../../../hooks/useAuthContext";
-import "./StripeCheckOutForm.css";
+// import "./StripeCheckOutForm.css";
 
 import { useNavigate } from "react-router-dom";
 const StripeCheckOutForm = ({ parsableTotalPrice, carts, refetch }) => {

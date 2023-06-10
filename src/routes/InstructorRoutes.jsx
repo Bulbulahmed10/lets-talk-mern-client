@@ -8,7 +8,7 @@ const InstructorRoutes = ({ children }) => {
   const [isInstructor, isInstructorLoading] = useInstructor();
   const location = useLocation();
 
-  if (loading && isInstructorLoading) {
+  if (loading || isInstructorLoading) {
     return <LoadingAnimation />;
   }
   if (user && isInstructor) {

@@ -14,6 +14,7 @@ const ClassCard = ({ singleTopClass }) => {
     class_name,
     course_time,
     instructor_name,
+    instructor_email,
     price,
     total_sets,
     enrolledStudentsId,
@@ -27,6 +28,7 @@ const ClassCard = ({ singleTopClass }) => {
       const classInfo = {
         class_id: _id,
         cart_owner: user?.email,
+        instructor_email,
         class_name,
         class_image,
         instructor_name,
@@ -34,7 +36,7 @@ const ClassCard = ({ singleTopClass }) => {
       };
       axios.post("http://localhost:5000/cart", classInfo).then((res) => {
         if (res.data.insertedId) {
-          refetch()
+          refetch();
           toast.success("Class added your cart", toastConfig);
         }
       });

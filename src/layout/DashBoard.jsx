@@ -15,12 +15,13 @@ import useInstructor from "../hooks/useInstructor";
 import useAdmin from "../hooks/useAdmin";
 const DashBoard = () => {
   const [carts] = useCart();
-  const { user, logout } = useAuthContext();
+  const { user, logout, loading } = useAuthContext();
   const [isInstructor] = useInstructor();
   const [isAdmin] = useAdmin();
   const handleLogout = () => {
     logout();
   };
+
 
   return (
     <div className="drawer lg:drawer-open">

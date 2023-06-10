@@ -87,7 +87,7 @@ const DashBoard = () => {
               <GoHistory className="w-6 h-6" />
               <Link
                 className="font-Poppins text-[#3d3d47] font-semibold"
-                to="/dashboard/cart">
+                to="/dashboard/payment-history">
                 Payment History
               </Link>
             </div>

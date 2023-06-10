@@ -71,15 +71,15 @@ const StripeCheckOutForm = ({ parsableTotalPrice, carts, refetch }) => {
         email: user?.email,
         transactionId,
         date: new Date(),
-        price,
+        price: parsableTotalPrice,
         quantity: carts.length,
         cartItems: carts.map((item) => item._id),
         classItems: carts.map((item) => item.class_id),
         orderStatus: "pending",
-        className: carts.map((item) => item.name),
+        className: carts.map((item) => item.class_name),
       };
 
-      axiosSecure.post("/payments", payment).then((res) => {
+      axiosSecureRequest.post("/payments", payment).then((res) => {
         console.log(res.data);
         if (
           res.data.deleteResult.deletedCount > 0 &&

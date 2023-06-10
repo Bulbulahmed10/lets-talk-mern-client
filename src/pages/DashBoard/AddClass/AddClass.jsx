@@ -38,11 +38,12 @@ const AddClass = () => {
               instructor_name: user?.displayName || "Anonymous",
               instructor_email: user?.email || "anonymousexample@gmail.com",
               enrolledStudentsId: [],
-              course_time: courseTime,
-              total_sets: totalSets,
-              price: price,
+              course_time: parseInt(totalSets),
+              total_sets: parseInt(totalSets),
+              price: parseInt(price),
               approved_status: "pending",
               class_image: res?.data?.display_url,
+              feedback: ""
             };
             axiosSecureRequest
               .post("/addClass", classInfo)

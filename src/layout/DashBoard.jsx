@@ -22,6 +22,15 @@ const DashBoard = () => {
     logout();
   };
 
+  const userRole = () => {
+    if (isAdmin) {
+      return "Admin";
+    } else if (isInstructor) {
+      return "Instructor";
+    } else {
+      return "Student";
+    }
+  };
 
   return (
     <div className="drawer lg:drawer-open">
@@ -44,7 +53,13 @@ const DashBoard = () => {
               src={user && user?.photoURL ? user?.photoURL : noAvatar}
               alt={user && user?.displayName ? user?.displayName : "Anonymous"}
             />
-            <p className="mt-2 text-center text-lg font-Poppins font-semibold">
+            <p className="text-center mt-1 font-Poppins text-sm">
+              Role:
+              <span className="text-violet-500 font-bold ml-1">
+                {userRole()}
+              </span>
+            </p>
+            <p className="text-center text-lg font-Poppins font-semibold">
               {user && user?.displayName ? user?.displayName : "Anonymous"}
             </p>
             <p className="text-center text-base font-Poppins font-medium">
@@ -149,16 +164,6 @@ const DashBoard = () => {
                     className="font-Poppins text-[#3d3d47] font-semibold"
                     to="/dashboard/manage-users">
                     Manage Users
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-center gap-4">
-                  <RiChatHistoryLine className="w-6 h-6" />
-                  <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
-                    to="/dashboard/my-feedback-history">
-                    My Feedback History
                   </Link>
                 </div>
               </li>

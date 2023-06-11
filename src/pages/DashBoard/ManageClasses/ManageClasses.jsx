@@ -3,6 +3,7 @@ import useAxiosSecureRequest from "../../../hooks/useAxiosSecureRequest";
 import { useQuery } from "@tanstack/react-query";
 import useAuthContext from "../../../hooks/useAuthContext";
 import toast from "react-hot-toast";
+import LoadingAnimation from "../../../shared/LoadingAnimation/LoadingAnimation";
 
 const ManageClasses = () => {
   const { user } = useAuthContext();
@@ -11,7 +12,11 @@ const ManageClasses = () => {
   const modalRef = useRef(null);
   const feedbackTestRef = useRef(null);
   const [feedbackClassId, setFeedbackClassId] = useState("");
-  const { data: allClasses = [], refetch } = useQuery({
+  const {
+    data: allClasses = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["allClasses", user?.email],
     queryFn: async () => {
       const response = await axiosSecureRequest("/admin/allClasses");
@@ -95,6 +100,7 @@ const ManageClasses = () => {
               <th>Action</th>
             </tr>
           </thead>
+          {isLoading && <LoadingAnimation />}
           <tbody>
             {allClasses?.map((singleClass, index) => {
               const {

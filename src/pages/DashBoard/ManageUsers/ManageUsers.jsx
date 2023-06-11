@@ -30,7 +30,7 @@ const ManageUsers = () => {
   };
 
   const handleUpdateUserRole = ({ updatedRole, email }) => {
-    console.log(updatedRole, email);
+
     if (user?.email) {
       Swal.fire({
         title: "Are you sure?",
@@ -70,11 +70,11 @@ const ManageUsers = () => {
           </thead>
           {isLoading && <LoadingAnimation />}
           <tbody>
-            {allUsers?.map((singleUser) => {
+            {allUsers?.map((singleUser, index) => {
               const { _id, email, name, profilePictureURL, role } = singleUser;
               return (
                 <tr key={_id}>
-                  <th>1</th>
+                  <th>{index + 1}</th>
                   <td>
                     <div className="flex items-center space-x-3">
                       <div className="avatar">

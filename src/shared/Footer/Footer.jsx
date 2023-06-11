@@ -16,9 +16,7 @@ const Footer = () => {
             <p className="text-3xl text-white">Lets Talk</p>
           </div>
           <p className="text-[#ffffff4d] mt-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-            pariatur ullam in praesentium cum laboriosam odit ratione voluptates
-            consequatur dolore commodi labore.
+          Are you ready to embark on an exciting journey of language learning? Look no further than Lets Talk, your premier language school dedicated to helping individuals of all ages and backgrounds achieve proficiency in their desired languages. 
           </p>
         </div>
 
@@ -128,19 +126,19 @@ const Footer = () => {
           / Lets Talk - Bulbul Ahmed © 2023 / All Rights Reserved
         </p>
         <div className="flex items-center gap-2">
-          <a href="#">
+          <a href="https://www.linkedin.com/in/bulbul-ahmed10/" target="_blank">
             <FaLinkedinIn
               title="Linkedin"
               className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"
             />
           </a>
-          <a href="#">
+          <a href="https://www.facebook.com/Mdbulbulmolla01/" target="_blank">
             <FaFacebookF
               title="Facebook"
               className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"
             />
           </a>
-          <a href="#">
+          <a href="https://www.twitter.com" target="_blank">
             <BsTwitter
               title="Twitter"
               className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"

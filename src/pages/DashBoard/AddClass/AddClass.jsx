@@ -21,45 +21,32 @@ const AddClass = () => {
   } = useForm();
 
   const onsubmit = (data) => {
-    const { classCode, className, courseTime, price, totalSets, image } = data;
-    const formData = new FormData();
-    formData.append("image", image[0]);
-    if (user && image) {
+    const { classCode, className, courseTime, price, totalSets, imageUrl } =
+      data;
+
+    if (user) {
       setLoading(true);
-      axios
-        .post(imageHostingURL, formData)
+      const classInfo = {
+        class_name: className,
+        class_code: classCode,
+        instructor_name: user?.displayName || "Anonymous",
+        instructor_email: user?.email || "anonymousexample@gmail.com",
+        enrolledStudentsId: [],
+        course_time: parseInt(courseTime),
+        total_sets: parseInt(totalSets),
+        price: parseInt(price),
+        approved_status: "pending",
+        class_image: imageUrl,
+        feedback: "",
+      };
+    
+      axiosSecureRequest
+        .post("/addClass", classInfo)
         .then((res) => {
-          console.log(res.data);
-          // setLoading(true);
-          if (res.data.success) {
-            console.log(res.data.display_url);
-            const classInfo = {
-              class_name: className,
-              class_code: classCode,
-              instructor_name: user?.displayName || "Anonymous",
-              instructor_email: user?.email || "anonymousexample@gmail.com",
-              enrolledStudentsId: [],
-              course_time: parseInt(totalSets),
-              total_sets: parseInt(totalSets),
-              price: parseInt(price),
-              approved_status: "pending",
-              class_image: res.data.display_url,
-              feedback: "",
-            };
-            console.log(classInfo);
-            axiosSecureRequest
-              .post("/addClass", classInfo)
-              .then((res) => {
-                if (res.data.insertedId) {
-                  toast.success("Class added request successful!", toastConfig);
-                  reset();
-                  setLoading(false);
-                }
-              })
-              .catch((err) => {
-                console.log(err);
-                setLoading(false);
-              });
+          if (res.data.insertedId) {
+            toast.success("Class added request successful!", toastConfig);
+            reset();
+            setLoading(false);
           }
         })
         .catch((err) => {
@@ -67,7 +54,7 @@ const AddClass = () => {
           setLoading(false);
         });
     } else {
-      console.log("user and image not found");
+      console.log("user not found");
     }
   };
 
@@ -192,15 +179,18 @@ const AddClass = () => {
         </div>
         <div>
           <label
-            htmlFor="price"
+            htmlFor="instructorName"
             className="block text-gray-700 font-medium mb-2">
-            Price
+            Image url
           </label>
-          <input
-            type="file"
-            {...register("image", { required: true })}
-            className="file-input file-input-bordered file-input-primary w-full p-0"
-          />
+          <div className="relative">
+            <input
+              {...register("imageUrl", { required: true })}
+              type="text"
+              className="w-full border-gray-300 border-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg py-2 px-4"
+              placeholder="Class image url"
+            />
+          </div>
         </div>
         <div className="mt-6">
           <div className="relative">

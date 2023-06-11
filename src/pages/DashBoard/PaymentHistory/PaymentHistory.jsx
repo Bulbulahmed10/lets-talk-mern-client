@@ -23,7 +23,7 @@ const PaymentHistory = () => {
           ) : (
             <>
               {paymentHistoryData?.map((singleHistoryData, index) => {
-                console.log(singleHistoryData);
+          
                 const { className, date, price, quantity, transactionId } =
                   singleHistoryData;
                 return (

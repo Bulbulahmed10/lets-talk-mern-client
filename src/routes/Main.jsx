@@ -15,11 +15,13 @@ import ManageClasses from "../pages/DashBoard/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/DashBoard/ManageUsers/ManageUsers";
 import InstructorRoutes from "./InstructorRoutes";
 import AdminRoutes from "./AdminRoutes";
+import ErrorPage from "../pages/error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

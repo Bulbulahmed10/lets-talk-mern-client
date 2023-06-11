@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import useAxiosSecureRequest from "../../../hooks/useAxiosSecureRequest";
 import useAuthContext from "../../../hooks/useAuthContext";
-// import "./StripeCheckOutForm.css";
 
 import { useNavigate } from "react-router-dom";
 const StripeCheckOutForm = ({ parsableTotalPrice, carts, refetch }) => {
@@ -37,7 +36,7 @@ const StripeCheckOutForm = ({ parsableTotalPrice, carts, refetch }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
@@ -54,7 +53,7 @@ const StripeCheckOutForm = ({ parsableTotalPrice, carts, refetch }) => {
           card: card,
           billing_details: {
             name: user?.displayName || "anonymous",
-            email: user?.email || "unknown",
+            email: user?.email || "anonymousexample@@gmail.com",
           },
         },
       });
@@ -73,20 +72,28 @@ const StripeCheckOutForm = ({ parsableTotalPrice, carts, refetch }) => {
         date: new Date(),
         price: parsableTotalPrice,
         quantity: carts.length,
-        instructor_name: carts.map(item => item.instructor_name) ,
+        instructor_name: carts.map((item) => item.instructor_name),
         cartItems: carts.map((item) => item._id),
         classItems: carts.map((item) => item.class_id),
         className: carts.map((item) => item.class_name),
       };
 
       axiosSecureRequest.post("/payments", payment).then((res) => {
-        console.log(res.data);
         if (
           res.data.deleteResult.deletedCount > 0 &&
           res.data.insertResult.insertedId
         ) {
-          navigate("/dashboard/payment-history");
-          refetch();
+          axiosSecureRequest
+            .post("/classes/enroll", {
+              classIds: carts.map((item) => item.class_id),
+              studentEmail: user?.email,
+            })
+            .then((res) => {
+              if (res.data.modifiedCount > 0) {
+                navigate("/dashboard/payment-history");
+                refetch();
+              }
+            });
         }
       });
     }

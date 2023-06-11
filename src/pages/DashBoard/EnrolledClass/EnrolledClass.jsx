@@ -20,7 +20,7 @@ const EnrolledClass = () => {
         </thead>
         <tbody>
           {paymentHistoryData?.map((classItem, index) => {
-            console.log(classItem);
+      
             return (
               <tr key={classItem._id}>
                 <td> {index + 1} </td>

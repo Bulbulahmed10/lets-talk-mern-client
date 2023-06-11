@@ -59,19 +59,21 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <a href="#">
+            <a
+              href="https://www.linkedin.com/in/bulbul-ahmed10/"
+              target="_blank">
               <FaLinkedinIn
                 title="Linkedin"
                 className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"
               />
             </a>
-            <a href="#">
+            <a href="https://www.facebook.com/Mdbulbulmolla01/" target="_blank">
               <FaFacebookF
                 title="Facebook"
                 className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"
               />
             </a>
-            <a href="#">
+            <a href="https://www.twitter.com">
               <BsTwitter
                 title="Twitter"
                 className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"

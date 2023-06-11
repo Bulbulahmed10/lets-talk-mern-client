@@ -10,7 +10,8 @@ const stripePromise = loadStripe(
 const StripePayment = () => {
   const [carts, refetch] = useCart();
   const totalPrice = carts.reduce((acc, item) => acc + item.price, 0);
-  const parsableTotalPrice = parseFloat(totalPrice.toFixed(2));
+
+  const parsableTotalPrice = parseFloat(totalPrice);
   return (
     <Elements stripe={stripePromise}>
       <StripeCheckOutForm

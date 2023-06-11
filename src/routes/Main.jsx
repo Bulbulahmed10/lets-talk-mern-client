@@ -13,7 +13,6 @@ import AddClass from "../pages/DashBoard/AddClass/AddClass";
 import MyClass from "../pages/DashBoard/MyClass/MyClass";
 import ManageClasses from "../pages/DashBoard/ManageClasses/ManageClasses";
 import ManageUsers from "../pages/DashBoard/ManageUsers/ManageUsers";
-import AdminFeedHistory from "../pages/DashBoard/AdminFeedbackHistory/AdminFeedHistory";
 import InstructorRoutes from "./InstructorRoutes";
 import AdminRoutes from "./AdminRoutes";
 
@@ -87,14 +86,6 @@ const router = createBrowserRouter([
             element: (
               <AdminRoutes>
                 <ManageUsers />
-              </AdminRoutes>
-            ),
-          },
-          {
-            path: "my-feedback-history",
-            element: (
-              <AdminRoutes>
-                <AdminFeedHistory />
               </AdminRoutes>
             ),
           },

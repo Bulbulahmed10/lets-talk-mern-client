@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import useAxiosSecureRequest from "../../../hooks/useAxiosSecureRequest";
 import { useQuery } from "@tanstack/react-query";
 import useAuthContext from "../../../hooks/useAuthContext";
@@ -8,6 +8,9 @@ const ManageClasses = () => {
   const { user } = useAuthContext();
   const [axiosSecureRequest] = useAxiosSecureRequest();
   const [loading, setLoading] = useState(false);
+  const modalRef = useRef(null);
+  const feedbackTestRef = useRef(null);
+  const [feedbackClassId, setFeedbackClassId] = useState("");
   const { data: allClasses = [], refetch } = useQuery({
     queryKey: ["allClasses", user?.email],
     queryFn: async () => {
@@ -39,8 +42,38 @@ const ManageClasses = () => {
           }
         })
         .catch((err) => {
-          console.log(err.message);
           setLoading(false);
+        });
+    }
+  };
+
+  const openModal = (id) => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+      setFeedbackClassId(id);
+    }
+  };
+
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
+  };
+
+  const handleSentFeedback = () => {
+    let feedbackValue = feedbackTestRef.current.value;
+    if (user?.email && feedbackTestRef.current.value) {
+      setLoading(true);
+      axiosSecureRequest
+        .patch(`/admin/updateClassFeedback`, { feedbackClassId, feedbackValue })
+        .then((res) => {
+          if (res.data.modifiedCount > 0) {
+            toast.success("Feedback Sent Successful");
+            feedbackTestRef.current.value = "";
+            refetch();
+            closeModal();
+            setLoading(false);
+          }
         });
     }
   };
@@ -57,6 +90,7 @@ const ManageClasses = () => {
               <th>Instructor Email</th>
               <th>Available Seats</th>
               <th>Price</th>
+              <th>Sent Feedback</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -71,6 +105,7 @@ const ManageClasses = () => {
                 instructor_name,
                 total_sets,
                 price,
+                feedback,
                 _id,
               } = singleClass;
 
@@ -91,6 +126,13 @@ const ManageClasses = () => {
                   <td>{instructor_email}</td>
                   <td>{total_sets}</td>
                   <td> {price} </td>
+                  <td
+                    className={`font-Poppins font-semibold ${
+                      feedback ? "text-blue-500" : "text-yellow-500"
+                    }`}>
+                    {" "}
+                    {feedback ? "True" : "False"}{" "}
+                  </td>
                   <td
                     className={`capitalize ${approveStatusByColor(
                       approved_status
@@ -120,9 +162,40 @@ const ManageClasses = () => {
                       className="btn btn-ghost btn-xs btn-outline">
                       Approve
                     </button>
-                    <button className="btn btn-ghost btn-xs btn-outline ">
-                      Send Feedback
-                    </button>
+
+                    <div>
+                      <button
+                        className="btn btn-ghost btn-xs btn-outline"
+                        onClick={() => openModal(_id)}>
+                        Send Feedback
+                      </button>
+
+                      <dialog ref={modalRef} className="modal">
+                        <form method="dialog" className="modal-box w-full">
+                          <p className="py-4">
+                            <textarea
+                              ref={feedbackTestRef}
+                              className="textarea resize-none textarea-info w-full "
+                              placeholder="Send class feedback to instructor why you denied or approve"
+                              rows={3}></textarea>
+                          </p>
+                          <p
+                            disabled={loading}
+                            onClick={() => handleSentFeedback(_id)}
+                            className="btn btn-outline">
+                            Send Feedback
+                          </p>
+                          <div className="modal-action">
+                            <button
+                              disabled={loading}
+                              className="btn"
+                              onClick={() => closeModal(_id)}>
+                              Close
+                            </button>
+                          </div>
+                        </form>
+                      </dialog>
+                    </div>
                   </th>
                 </tr>
               );

@@ -13,7 +13,7 @@ const Instructors = () => {
   const { data: allInstructors = [], isLoading } = useQuery({
     queryKey: "allInstructors",
     queryFn: async () => {
-      const response = await axios("http://localhost:5000/allInstructors");
+      const response = await axios("https://lets-talk-school.vercel.app/allInstructors");
       return response.data;
     },
   });

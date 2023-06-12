@@ -42,7 +42,7 @@ const ClassCard = ({ singleTopClass }) => {
         instructor_name,
         price,
       };
-      axios.post("http://localhost:5000/cart", classInfo).then((res) => {
+      axios.post("https://lets-talk-school.vercel.app/cart", classInfo).then((res) => {
         if (res.data.insertedId) {
           refetch();
           toast.success("Class added your cart", toastConfig);

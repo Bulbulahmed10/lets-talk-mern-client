@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post("http://localhost:5000/userJwtToken", {
+          .post("https://lets-talk-school.vercel.app/userJwtToken", {
             email: currentUser.email,
           })
           .then((data) => {

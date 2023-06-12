@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import toastConfig from "../../utils/toastConfig";
 import { AuthContext } from "../../context/AuthProvider";
 import SyncLoader from "react-spinners/SyncLoader";
+import axios from "axios";
 const Login = () => {
   const { login, googleLogin, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -23,10 +24,39 @@ const Login = () => {
     setLoading(true);
     googleLogin()
       .then((result) => {
-        const signInUser = result;
-        setUser(signInUser);
-        navigate(from, { replace: true });
-        setLoading(false);
+        const signInUser = result.user;
+        const { displayName, email, photoURL } = signInUser;
+
+        const saveUserInfo = {
+          name: displayName,
+          email: email,
+          profilePictureURL:
+            photoURL !== null
+              ? photoURL
+              : "https://i.ibb.co/5x6rFVp/noAvatar.png",
+          role: "student",
+        };
+        axios
+          .post("http://localhost:5000/user", saveUserInfo)
+          .then((res) => {
+            console.log(res);
+            if (res.data.existUser) {
+              toast.success("Login Successful!", toastConfig);
+              setUser(signInUser);
+              navigate(from, { replace: true });
+              setLoading(false);
+            }
+            if (res.data.insertedId) {
+              toast.success("Login Successful!", toastConfig);
+              navigate("/");
+              setUser(result.user);
+              setLoading(false);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+          });
       })
       .catch((err) => {
         console.log(err);

@@ -6,8 +6,10 @@ import LoadingAnimation from "../../shared/LoadingAnimation/LoadingAnimation";
 import SectionHeading from "../../shared/SectionHeading/SectionHeading";
 import { useLocation } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
+import useDarkTheme from "../../hooks/useDarkTheme";
 const Instructors = () => {
   const location = useLocation();
+  const { darkTheme } = useDarkTheme();
   const { data: allInstructors = [], isLoading } = useQuery({
     queryKey: "allInstructors",
     queryFn: async () => {
@@ -25,10 +27,13 @@ const Instructors = () => {
       <div className="grid grid-cols-4">
         {allInstructors?.map((instructor) => {
           return (
-            <Zoom>
+            <Zoom key={instructor._id}>
               <div
                 key={instructor._id}
-                className="bg-white rounded-lg shadow-lg p-6">
+                className={`bg-white ${
+                  darkTheme &&
+                  "bg-black border border-neutral-400 text-neutral-200"
+                } rounded-lg shadow-lg p-6`}>
                 <img
                   src={instructor.profilePictureURL}
                   alt={instructor.name}
@@ -39,7 +44,12 @@ const Instructors = () => {
                 </h2>
                 <div className="flex items-center mb-4">
                   <FiMail className="mr-2" />
-                  <p className="text-gray-600">{instructor.email}</p>
+                  <p
+                    className={`text-gray-600 ${
+                      darkTheme && "text-neutral-200"
+                    }`}>
+                    {instructor.email}
+                  </p>
                 </div>
               </div>
             </Zoom>

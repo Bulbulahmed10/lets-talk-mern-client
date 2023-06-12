@@ -5,6 +5,7 @@ import { FaQuoteRight } from "react-icons/fa";
 import Marquee from "react-fast-marquee";
 import SectionHeading from "../../../../shared/SectionHeading/SectionHeading";
 import { Fade } from "react-awesome-reveal";
+import useDarkTheme from "../../../../hooks/useDarkTheme";
 
 const testimonialData = [
   {
@@ -46,6 +47,7 @@ const testimonialData = [
 ];
 
 const Testimonial = () => {
+  const {darkTheme} = useDarkTheme()
   return (
     <div className="my-16">
       <SectionHeading heading="Our Student Saying" />
@@ -53,7 +55,7 @@ const Testimonial = () => {
         {testimonialData.map((singleTestimonial) => (
           <div
             key={singleTestimonial.id}
-            className="w-[600px] bg-[#F8F8F8] p-6 rounded-tl-3xl rounded-br-3xl rounded-tr-md rounded-bl-md ml-8">
+            className={`w-[600px] bg-[#F8F8F8] ${darkTheme && "bg-black text-white border"} p-6 rounded-tl-3xl rounded-br-3xl rounded-tr-md rounded-bl-md ml-8`}>
             <div className="flex justify-between">
               <div className="flex items-center gap-3 mb-3">
                 <img

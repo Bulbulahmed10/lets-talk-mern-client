@@ -33,15 +33,13 @@ const Sponsor = () => {
       <SectionHeading heading="Our Sponsor" />
       <Marquee speed={40} gradient={false} pauseOnHover={true}>
         {sponsorLogos.map((sponsor) => (
-          <>
-            <div data-aos="zoom-in" key={sponsor.id} className="px-4 py-2">
-              <img
-                src={sponsor.image}
-                alt={sponsor.name}
-                className="w-32 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto object-contain"
-              />
-            </div>
-          </>
+          <div data-aos="zoom-in" key={sponsor.id} className="px-4 py-2">
+            <img
+              src={sponsor.image}
+              alt={sponsor.name}
+              className="w-32 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto object-contain"
+            />
+          </div>
         ))}
       </Marquee>
     </div>

@@ -9,11 +9,15 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import noAvatar from "../../assets/no_avatar.png";
 import useCart from "../../hooks/useCart";
+import DarkLightToggleButton from "../DarkLightToggleButton/DarkLightToggleButton";
+import useDarkTheme from "../../hooks/useDarkTheme";
 const Navbar = () => {
   const { user, logout, setUser } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [carts] = useCart();
+  const { darkTheme } = useDarkTheme();
+
   const handleLogOut = () => {
     logout().then(() => {
       setUser(null);
@@ -36,8 +40,9 @@ const Navbar = () => {
   return (
     <div className="z-50 relative">
       <div
-        data-aos="zoom-out"
-        className={`fixed max-w-7xl bg-[#fff] border-b-2 font-OpenSans mx-auto right-0 left-0 top-0 py-4 transition-all duration-500 ${
+        className={`fixed w-full px-[120px] ${
+          darkTheme ? "bg-black" : "bg-white"
+        } border-b-2 font-OpenSans mx-auto right-0 left-0 top-0 py-4 transition-all duration-500 ${
           isScrolled ? "-translate-y-full" : "translate-y-0"
         }`}>
         <div className="flex justify-between items-center ">
@@ -86,13 +91,16 @@ const Navbar = () => {
                 className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"
               />
             </a>
+            <DarkLightToggleButton />
           </div>
         </div>
       </div>
       <div
-        className={`navbar fixed max-w-7xl -mt-10 ${
+        className={`navbar fixed  w-full px-[120px] -mt-6 ${
           isScrolled && "-mt-8 pt-10"
-        } bg-[#ffffff] mx-auto top-0 left-0 right-0  transition-all duration-500 ${
+        } ${
+          darkTheme ? "bg-black" : "bg-white"
+        } mx-auto top-0 left-0 right-0  transition-all duration-500 ${
           isScrolled ? "translate-y-0" : "translate-y-full"
         }`}>
         <div className="navbar-start">
@@ -130,7 +138,10 @@ const Navbar = () => {
           <Link to="/">
             <div className="flex gap-1">
               <img className="h-[45px]" src={logo} alt="" />
-              <p className="text-xl font-Poppins mt-2 font-semibold">
+              <p
+                className={`${
+                  darkTheme ? "text-neutral-200" : "text-black"
+                } text-xl font-Poppins mt-2 font-semibold`}>
                 Lets Talk
               </p>
             </div>
@@ -138,13 +149,22 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li className="font-Poppins text-[#3d3d47] font-semibold">
+            <li
+              className={`font-Poppins ${
+                darkTheme && "text-neutral-200"
+              } text-[#3d3d47] font-semibold `}>
               <Link to="/">Home</Link>
             </li>
-            <li className="font-Poppins text-[#3d3d47] font-semibold">
+            <li
+              className={`font-Poppins ${
+                darkTheme && "text-neutral-200"
+              } text-[#3d3d47] font-semibold`}>
               <Link to="/instructors">Instructors</Link>
             </li>
-            <li className="font-Poppins text-[#3d3d47] font-semibold">
+            <li
+              className={`font-Poppins ${
+                darkTheme && "text-neutral-200"
+              } text-[#3d3d47] font-semibold`}>
               <Link to="/classes">Classes</Link>
             </li>
           </ul>
@@ -152,13 +172,19 @@ const Navbar = () => {
         <div className="navbar-end">
           <ul className="menu menu-horizontal items-center gap-4">
             {!user && (
-              <li className="font-Poppins text-[#3d3d47] font-semibold">
+              <li
+                className={`font-Poppins ${
+                  darkTheme && "text-neutral-200 "
+                } text-[#3d3d47] font-semibold`}>
                 <Link to="/login">Login</Link>
               </li>
             )}
             {user && (
               <>
-                <li className="font-Poppins text-[#3d3d47] font-semibold">
+                <li
+                  className={`font-Poppins ${
+                    darkTheme && "text-neutral-200"
+                  } text-[#3d3d47] font-semibold`}>
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li className="dropdown dropdown-end">
@@ -166,7 +192,7 @@ const Navbar = () => {
                     <div className="indicator">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h- w-6"
+                        className={`h-6 w-6 ${darkTheme && "text-white"}`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -184,7 +210,7 @@ const Navbar = () => {
                   </label>
                   <div
                     tabIndex={0}
-                    className="card card-compact dropdown-content w-52 bg-base-100 shadow ">
+                    className="card card-compact dropdown-content w-52 bg-base-100 shadow hover:bg-white ">
                     <div className="card-body">
                       <span className="font-bold text-lg">
                         {carts && carts?.length > 0 ? carts?.length : 0} Items
@@ -223,7 +249,9 @@ const Navbar = () => {
                     className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
                       <a
-                        className="font-Poppins text-[#3d3d47] font-semibold"
+                        className={`font-Poppins ${
+                          darkTheme && "text-neutral-200"
+                        } text-[#3d3d47] font-semibold`}
                         onClick={handleLogOut}>
                         Logout
                       </a>

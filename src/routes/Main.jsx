@@ -16,6 +16,8 @@ import ManageUsers from "../pages/DashBoard/ManageUsers/ManageUsers";
 import InstructorRoutes from "./InstructorRoutes";
 import AdminRoutes from "./AdminRoutes";
 import ErrorPage from "../pages/error/ErrorPage";
+import Instructors from "../pages/Instructors/Instructors";
+import Classes from "../pages/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/instructors",
+        element: <Instructors />,
+      },
+      {
+        path: "/classes",
+        element: <Classes />,
       },
       {
         path: "/login",

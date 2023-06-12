@@ -138,13 +138,13 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li className="font-Poppins text-[#3d3d47] font-semibold">
-              <Link>Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li className="font-Poppins text-[#3d3d47] font-semibold">
-              <Link>Instructors</Link>
+              <Link to="/instructors">Instructors</Link>
             </li>
             <li className="font-Poppins text-[#3d3d47] font-semibold">
-              <Link>Classes</Link>
+              <Link to="/classes">Classes</Link>
             </li>
           </ul>
         </div>

@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import toastConfig from "../../utils/toastConfig";
 import useCart from "../../hooks/useCart";
+import useInstructor from "../../hooks/useInstructor";
+import useAdmin from "../../hooks/useAdmin";
 const ClassCard = ({ singleTopClass }) => {
   const {
     class_image,
@@ -22,6 +24,8 @@ const ClassCard = ({ singleTopClass }) => {
   } = singleTopClass;
   const { user } = useAuthContext();
   const [, refetch] = useCart();
+  const [isInstructor] = useInstructor();
+  const [isAdmin] = useAdmin();
   const navigate = useNavigate();
   const handleAddToCart = () => {
     if (user && user?.email) {
@@ -57,8 +61,13 @@ const ClassCard = ({ singleTopClass }) => {
     }
   };
 
+  const availableSeats = total_sets - enrolledStudentsId.length;
+
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div
+      className={`${
+        availableSeats === 0 ? "bg-red-200" : "bg-white"
+      } shadow-lg rounded-lg overflow-hidden`}>
       <img
         src={class_image}
         alt={class_name}
@@ -82,7 +91,7 @@ const ClassCard = ({ singleTopClass }) => {
             </p>
             <p className="text-gray-600 mb-2">
               <AiOutlineBook className="inline-block mr-1 text-lg" />
-              Available Sets: {total_sets - enrolledStudentsId.length}
+              Available Sets: {availableSeats}
             </p>
           </div>
         </div>
@@ -90,8 +99,13 @@ const ClassCard = ({ singleTopClass }) => {
           <p className="text-gray-700 text-2xl font-semibold">${price}</p>
           <button
             onClick={handleAddToCart}
-            className="btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md">
-            Add to Cart
+            className={`btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded-md ${
+              isAdmin || isInstructor || availableSeats === 0
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}
+            disabled={isAdmin || isInstructor || availableSeats === 0}>
+            Select
           </button>
         </div>
       </div>

@@ -35,15 +35,15 @@ const HomeBanner = () => {
         className="mySwiper">
         <SwiperSlide className="-z-0">
           <div className="relative">
-            <div className="absolute w-full flex flex-col h-full  justify-center md:ml-36 -z-0">
-              <p className="font-Poppins md:text-3xl text-white md:w-[500px]">
+            <div className="absolute w-full flex flex-col h-full justify-center md:ml-36 -z-0">
+              <p className="font-Poppins px-1 md:text-3xl text-white md:w-[500px]">
                 Putting Children First. Preparing Children For Success In Life
               </p>
               <div className="flex gap-2 mt-4">
-                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">
+                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-2 md:px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans ml-1">
                   Sign up now
                 </p>
-                <p className="bg-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">
+                <p className="bg-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans ">
                   Learn More
                 </p>
               </div>
@@ -54,11 +54,11 @@ const HomeBanner = () => {
         <SwiperSlide>
           <div className="relative">
             <div className="absolute w-full flex flex-col h-full  justify-center md:ml-40">
-              <p className="font-Poppins md:text-3xl text-white md:w-[500px]">
+              <p className="font-Poppins px-1 md:text-3xl text-white md:w-[500px]">
                 Teaching Turning Todays Learners Into Tomorrows Leaders
               </p>
               <div className="flex gap-2 mt-4">
-                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">
+                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans ml-1">
                   Sign up now
                 </p>
                 <p className="bg-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">
@@ -71,12 +71,12 @@ const HomeBanner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div className="relative">
-            <div className="absolute w-full flex flex-col h-full  justify-center ml-40">
-              <p className="font-Poppins text-3xl text-white w-[500px]">
+            <div className="absolute w-full flex flex-col h-full  justify-center md:ml-40">
+              <p className="font-Poppins md:text-3xl text-white md:w-[500px]">
                 Every student matters, every moment counts.
               </p>
               <div className="flex gap-2 mt-4">
-                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">
+                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans ml-1">
                   Sign up now
                 </p>
                 <p className="bg-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">
@@ -90,12 +90,12 @@ const HomeBanner = () => {
 
         <SwiperSlide>
           <div className="relative">
-            <div className="absolute w-full flex flex-col h-full  justify-center ml-40">
-              <p className="font-Poppins text-3xl text-white w-[500px]">
+            <div className="absolute w-full flex flex-col h-full  justify-center md:ml-40">
+              <p className="font-Poppins md:text-3xl text-white md:w-[500px]">
                 To have another language is to possess a second soul.
               </p>
               <div className="flex gap-2 mt-4">
-                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">
+                <p className="bg-[#FE5D59] border-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans ml-1">
                   Sign up now
                 </p>
                 <p className="bg-transparent border-2 outline-white text-white px-4 py-2 uppercase text-sm font-semibold cursor-pointer rounded-2xl font-OpenSans">

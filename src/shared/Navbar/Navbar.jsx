@@ -92,14 +92,12 @@ const Navbar = () => {
               />
             </a>
             <div className="hidden md:block">
-            <DarkLightToggleButton />
-
+              <DarkLightToggleButton />
             </div>
           </div>
           <div className="block md:hidden">
-          <DarkLightToggleButton />
+            <DarkLightToggleButton />
           </div>
-
         </div>
       </div>
       <div
@@ -115,7 +113,7 @@ const Navbar = () => {
             <label tabIndex={0} className="btn btn-ghost md:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 -ml-4 md:ml-0"
+                className={`h-6 w-6 -ml-4 md:ml-0 ${darkTheme && "text-white"}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -129,17 +127,35 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              <li>
-                <a className="font-Poppins text-[#3d3d47] font-semibold">
-                  Item 1
-                </a>
+              className={`menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 ${
+                darkTheme && "bg-black"
+              } rounded-box w-52`}>
+              <li
+                className={`font-Poppins ${
+                  darkTheme && "text-neutral-200"
+                } text-[#3d3d47] font-semibold `}>
+                <Link to="/">Home</Link>
               </li>
-              <li>
-                <a className="font-Poppins text-[#3d3d47] font-semibold">
-                  Item 3
-                </a>
+              <li
+                className={`font-Poppins ${
+                  darkTheme && "text-neutral-200"
+                } text-[#3d3d47] font-semibold`}>
+                <Link to="/instructors">Instructors</Link>
               </li>
+              <li
+                className={`font-Poppins ${
+                  darkTheme && "text-neutral-200"
+                } text-[#3d3d47] font-semibold`}>
+                <Link to="/classes">Classes</Link>
+              </li>
+              {user && (
+                <li
+                  className={`font-Poppins  ${
+                    darkTheme && "text-neutral-200"
+                  } text-[#3d3d47] font-semibold`}>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+              )}
             </ul>
           </div>
           <Link to="/">

@@ -24,7 +24,7 @@ const Instructors = () => {
       {location.pathname === "/" && (
         <SectionHeading heading="Our Featured Instructor" />
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pt-14 -mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4 pt-14 -mt-8">
         {allInstructors?.map((instructor) => {
           return (
             <Zoom key={instructor._id}>
@@ -34,7 +34,7 @@ const Instructors = () => {
                   darkTheme
                     ? "bg-dark border border-neutral-400 text-neutral-200"
                     : "bg-white"
-                } rounded-lg shadow-lg p-6`}>
+                } rounded-lg shadow-lg p-6 mb-4`}>
                 <img
                   src={instructor.profilePictureURL}
                   alt={instructor.name}

@@ -4,9 +4,11 @@ import useAuthContext from "../../../hooks/useAuthContext";
 import useAxiosSecureRequest from "../../../hooks/useAxiosSecureRequest";
 import LoadingAnimation from "../../../shared/LoadingAnimation/LoadingAnimation";
 import Swal from "sweetalert2";
+import useDarkTheme from "../../../hooks/useDarkTheme";
 const ManageUsers = () => {
   const { user } = useAuthContext();
   const [axiosSecureRequest] = useAxiosSecureRequest();
+  const {darkTheme} = useDarkTheme()
   const {
     data: allUsers = [],
     refetch,
@@ -60,7 +62,7 @@ const ManageUsers = () => {
       <div className="overflow-x-auto w-full px-4">
         <table className="table">
           <thead>
-            <tr>
+            <tr className={`${darkTheme && "text-neutral-200"}`}>
               <th>#</th>
               <th>Name</th>
               <th>Email </th>
@@ -69,7 +71,7 @@ const ManageUsers = () => {
             </tr>
           </thead>
           {isLoading && <LoadingAnimation />}
-          <tbody>
+          <tbody className={`${darkTheme && "text-neutral-300"}`}>
             {allUsers?.map((singleUser, index) => {
               const { _id, email, name, profilePictureURL, role } = singleUser;
               return (

@@ -3,8 +3,10 @@ import useCart from "../../../hooks/useCart";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useDarkTheme from "../../../hooks/useDarkTheme";
 const Cart = () => {
   const [carts, refetch] = useCart();
+  const { darkTheme } = useDarkTheme();
   const handleRemoveCart = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -16,24 +18,35 @@ const Cart = () => {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/cart/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire("Removed!", "Your Selected has been Removed.", "success");
-          }
-        });
+        axios
+          .delete(`https://lets-talk-school.vercel.app/cart/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire(
+                "Removed!",
+                "Your Selected has been Removed.",
+                "success"
+              );
+            }
+          });
       }
     });
   };
   return (
     <>
-
-      <div className="flex justify-between items-center w-full px-8">
-        <p className="font-Poppins text-lg font-medium ">
+      <div className="md:flex justify-between items-center w-full md:px-8">
+        <p
+          className={`font-Poppins text-lg font-medium ${
+            darkTheme && "text-neutral-300"
+          }`}>
           Total Selected Class:
           <span className="text-[#00C172]"> {carts && carts?.length} </span>
         </p>
-        <p className="font-Poppins text-lg font-medium ">
+        <p
+          className={`font-Poppins text-lg font-medium ${
+            darkTheme && "text-neutral-300"
+          }`}>
           Total Price:
           <span className="text-[#00C172] ml-1">
             $
@@ -42,7 +55,11 @@ const Cart = () => {
               : "0"}
           </span>
         </p>
-        <Link to="/dashboard/stripe-payment" className="btn btn-outline btn-md">
+        <Link
+          to="/dashboard/stripe-payment"
+          className={`btn btn-outline btn-md ${
+            darkTheme && "border border-neutral-400 text-neutral-300"
+          } `}>
           Pay All
         </Link>
       </div>
@@ -50,7 +67,7 @@ const Cart = () => {
       <div className="overflow-x-auto w-full px-4">
         <table className="table">
           <thead>
-            <tr>
+            <tr className={`${darkTheme && "text-neutral-300"}`}>
               <th>#</th>
               <th>Class Name</th>
               <th>Instructor Name</th>
@@ -65,7 +82,7 @@ const Cart = () => {
                 const { class_image, class_name, instructor_name, price, _id } =
                   classItem;
                 return (
-                  <tr key={_id}>
+                  <tr key={_id} className={darkTheme && "text-neutral-300"}>
                     <td> {index + 1} </td>
                     <td>
                       <div className="flex items-center space-x-3">
@@ -89,7 +106,7 @@ const Cart = () => {
                       </button>
                       <Link
                         to="/dashboard/stripe-payment"
-                        className="btn btn-ghost btn-sm btn-outline ml-2">
+                        className="btn btn-ghost btn-sm btn-outline ml-2 mt-2 md:mt-0">
                         Pay
                       </Link>
                     </td>

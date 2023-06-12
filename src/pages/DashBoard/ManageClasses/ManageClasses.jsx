@@ -4,11 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAuthContext from "../../../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import LoadingAnimation from "../../../shared/LoadingAnimation/LoadingAnimation";
+import useDarkTheme from "../../../hooks/useDarkTheme";
 
 const ManageClasses = () => {
   const { user } = useAuthContext();
   const [axiosSecureRequest] = useAxiosSecureRequest();
   const [loading, setLoading] = useState(false);
+  const { darkTheme } = useDarkTheme();
   const modalRef = useRef(null);
   const feedbackTestRef = useRef(null);
   const [feedbackClassId, setFeedbackClassId] = useState("");
@@ -88,7 +90,7 @@ const ManageClasses = () => {
       <div className="overflow-x-auto w-full">
         <table className="table">
           <thead>
-            <tr>
+            <tr className={`${darkTheme && "text-neutral-200"}`}>
               <th>#</th>
               <th>Class Name</th>
               <th>Instructor Name</th>
@@ -101,7 +103,7 @@ const ManageClasses = () => {
             </tr>
           </thead>
           {isLoading && <LoadingAnimation />}
-          <tbody>
+          <tbody className={`${darkTheme && "text-neutral-200"}`}>
             {allClasses?.map((singleClass, index) => {
               const {
                 approved_status,
@@ -153,7 +155,9 @@ const ManageClasses = () => {
                         approved_status === "approved" ||
                         loading
                       }
-                      className="disabled: btn btn-ghost btn-xs btn-outline ">
+                      className={`btn btn-ghost btn-xs btn-outline ${
+                        darkTheme && "btn btn-primary"
+                      } `}>
                       Deny
                     </button>
                     <button
@@ -165,13 +169,17 @@ const ManageClasses = () => {
                         approved_status === "approved" ||
                         loading
                       }
-                      className="btn btn-ghost btn-xs btn-outline">
+                      className={`btn btn-ghost btn-xs btn-outline ${
+                        darkTheme && "btn btn-secondary"
+                      } `}>
                       Approve
                     </button>
 
                     <div>
                       <button
-                        className="btn btn-ghost btn-xs btn-outline"
+                        className={`btn btn-ghost btn-xs btn-outline ${
+                          darkTheme && "btn btn-info"
+                        } `}
                         onClick={() => openModal(_id)}>
                         Send Feedback
                       </button>

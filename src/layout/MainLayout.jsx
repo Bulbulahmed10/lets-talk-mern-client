@@ -9,7 +9,7 @@ const MainLayout = () => {
   return (
     <>
       <div
-        className={`w-full overflow-x-hidden px-[10px] md:px-[50px] mx-auto ${
+        className={`w-full overflow-x-auto px-[10px] md:px-[50px] mx-auto ${
           darkTheme && "bg-black"
         }`}>
         <Header />
@@ -18,7 +18,7 @@ const MainLayout = () => {
         </div>
       </div>
       <div
-        className={`w-full overflow-x-hidden md:px-[50px] mx-auto ${
+        className={`w-full overflow-x-auto md:px-[50px] mx-auto ${
           darkTheme && "bg-black"
         }`}>
         <Footer />

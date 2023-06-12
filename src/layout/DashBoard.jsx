@@ -8,16 +8,16 @@ import noAvatar from "../assets/no_avatar.png";
 import { AiOutlineLogin } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
 import { FaChalkboardTeacher } from "react-icons/fa";
-import { MdOutlineFeedback } from "react-icons/md";
 import { HiUserGroup } from "react-icons/hi";
-import { RiChatHistoryLine } from "react-icons/ri";
 import useInstructor from "../hooks/useInstructor";
 import useAdmin from "../hooks/useAdmin";
+import useDarkTheme from "../hooks/useDarkTheme";
 const DashBoard = () => {
   const [carts] = useCart();
-  const { user, logout, loading } = useAuthContext();
+  const { user, logout } = useAuthContext();
   const [isInstructor] = useInstructor();
   const [isAdmin] = useAdmin();
+  const { darkTheme } = useDarkTheme();
   const handleLogout = () => {
     logout();
   };
@@ -40,12 +40,15 @@ const DashBoard = () => {
         <label
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden">
-          Open drawer
+          Open Dashboard
         </label>
       </div>
       <div className="drawer-side h-fit ">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+        <ul
+          className={`menu p-4 w-80 h-full mt-28 md:mt-0 bg-base-200 text-base-content ${
+            darkTheme && "bg-gray-950 text-neutral-200"
+          }`}>
           {/* Sidebar content here */}
           <div className="pb-4">
             <img
@@ -93,7 +96,9 @@ const DashBoard = () => {
                     </div>
                   </label>
                   <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold "
+                    className={`font-Poppins text-[#3d3d47] ${
+                      darkTheme && "text-neutral-200"
+                    } font-semibold`}
                     to="/dashboard/cart">
                     My Selected Class
                   </Link>
@@ -103,7 +108,9 @@ const DashBoard = () => {
                 <div className="flex items-center gap-4">
                   <SiGoogleclassroom className="w-6 h-6" />
                   <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
+                    className={`font-Poppins text-[#3d3d47] ${
+                      darkTheme && "text-neutral-200"
+                    } font-semibold`}
                     to="/dashboard/enrolled-class">
                     My Enrolled Class
                   </Link>
@@ -113,7 +120,9 @@ const DashBoard = () => {
                 <div className="flex items-center gap-4">
                   <GoHistory className="w-6 h-6" />
                   <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
+                    className={`font-Poppins text-[#3d3d47] ${
+                      darkTheme && "text-neutral-200"
+                    } font-semibold`}
                     to="/dashboard/payment-history">
                     Payment History
                   </Link>
@@ -127,7 +136,9 @@ const DashBoard = () => {
                 <div className="flex items-center gap-4">
                   <BiAddToQueue className="w-6 h-6" />
                   <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
+                    className={`font-Poppins text-[#3d3d47] ${
+                      darkTheme && "text-neutral-200"
+                    } font-semibold`}
                     to="/dashboard/add-class">
                     Add Class
                   </Link>
@@ -137,7 +148,9 @@ const DashBoard = () => {
                 <div className="flex items-center gap-4">
                   <FaChalkboardTeacher className="w-6 h-6" />
                   <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
+                    className={`font-Poppins text-[#3d3d47] ${
+                      darkTheme && "text-neutral-200"
+                    } font-semibold`}
                     to="/dashboard/my-class">
                     My Class
                   </Link>
@@ -151,7 +164,9 @@ const DashBoard = () => {
                 <div className="flex items-center gap-4">
                   <SiGoogleclassroom className="w-6 h-6" />
                   <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
+                    className={`font-Poppins text-[#3d3d47] ${
+                      darkTheme && "text-neutral-200"
+                    } font-semibold`}
                     to="/dashboard/manage-classes">
                     Manage Classes
                   </Link>
@@ -161,7 +176,9 @@ const DashBoard = () => {
                 <div className="flex items-center gap-4">
                   <HiUserGroup className="w-6 h-6" />
                   <Link
-                    className="font-Poppins text-[#3d3d47] font-semibold"
+                    className={`font-Poppins text-[#3d3d47] ${
+                      darkTheme && "text-neutral-200"
+                    } font-semibold`}
                     to="/dashboard/manage-users">
                     Manage Users
                   </Link>
@@ -173,7 +190,10 @@ const DashBoard = () => {
           <li onClick={handleLogout}>
             <div className="flex items-center gap-4">
               <AiOutlineLogin className="w-6 h-6" />
-              <span className="font-Poppins text-[#3d3d47] font-semibold">
+              <span
+                className={`font-Poppins text-[#3d3d47] ${
+                  darkTheme && "text-neutral-200"
+                } font-semibold`}>
                 Logout
               </span>
             </div>

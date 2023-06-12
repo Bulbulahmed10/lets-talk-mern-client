@@ -2,13 +2,15 @@ import React from "react";
 import moment from "moment";
 import LoadingAnimation from "../../../shared/LoadingAnimation/LoadingAnimation";
 import usePayment from "../../../hooks/usePayment";
+import useDarkTheme from "../../../hooks/useDarkTheme";
 const PaymentHistory = () => {
   const [paymentHistoryData, isLoading] = usePayment();
+  const { darkTheme } = useDarkTheme();
   return (
     <div className="overflow-x-auto w-full">
       <table className="table">
         <thead>
-          <tr>
+          <tr className={`${darkTheme && "text-neutral-200"}`}>
             <th>#</th>
             <th>Class Name</th>
             <th>TransactionId</th>
@@ -17,13 +19,12 @@ const PaymentHistory = () => {
             <th>Date</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={`${darkTheme && "text-neutral-300"}`}>
           {isLoading ? (
             <LoadingAnimation />
           ) : (
             <>
               {paymentHistoryData?.map((singleHistoryData, index) => {
-          
                 const { className, date, price, quantity, transactionId } =
                   singleHistoryData;
                 return (

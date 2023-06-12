@@ -1,24 +1,26 @@
 import moment from "moment";
 import usePayment from "../../../hooks/usePayment";
 import LoadingAnimation from "../../../shared/LoadingAnimation/LoadingAnimation";
+import useDarkTheme from "../../../hooks/useDarkTheme";
 
 const EnrolledClass = () => {
   const [paymentHistoryData, isLoading] = usePayment();
+  const {darkTheme} = useDarkTheme()
   {
     isLoading && <LoadingAnimation />;
   }
   return (
-    <div className="overflow-x-auto w-full px-8">
+    <div className="overflow-x-auto w-full md:px-8">
       <table className="table table-zebra">
         <thead>
-          <tr>
+          <tr className={`${darkTheme && "text-neutral-200"}`}>
             <th>#</th>
             <th>Class Name</th>
             <th>Instructor Name</th>
             <th>Enroll Date</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={`${darkTheme && "text-neutral-300"}`}>
           {paymentHistoryData?.map((classItem, index) => {
       
             return (

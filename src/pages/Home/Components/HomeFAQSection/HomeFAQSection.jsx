@@ -6,7 +6,7 @@ import { Bounce, Slide, Zoom } from "react-awesome-reveal";
 const HomeFAQSection = () => {
   return (
     <div className="bg-[#01A2A6] py-10 flex justify-around gap-2 px-2">
-      <Slide delay={103}>
+      <Zoom delay={103}>
         <div>
           <AiOutlineMail className="text-4xl text-white" />
           <p className="text-lg md:text-[28px] font-Poppins font-medium mt-3 text-[#FFF19A]">
@@ -17,7 +17,7 @@ const HomeFAQSection = () => {
             <Bounce>Find the price of your ideal course</Bounce>
           </p>
         </div>
-      </Slide>
+      </Zoom>
       <Zoom>
         <div>
           <TfiHeadphoneAlt className="text-4xl text-white" />

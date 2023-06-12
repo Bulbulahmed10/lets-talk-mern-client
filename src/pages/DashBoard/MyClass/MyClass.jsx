@@ -3,9 +3,11 @@ import useAxiosSecureRequest from "../../../hooks/useAxiosSecureRequest";
 import useAuthContext from "../../../hooks/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import LoadingAnimation from "../../../shared/LoadingAnimation/LoadingAnimation";
+import useDarkTheme from "../../../hooks/useDarkTheme";
 
 const MyClass = () => {
   const { user } = useAuthContext();
+  const { darkTheme } = useDarkTheme();
   const [axiosSecureRequest] = useAxiosSecureRequest();
   const url = `/instructor/myClass/${user?.email}`;
   const { data: myClassData = [], isLoading } = useQuery({
@@ -22,9 +24,9 @@ const MyClass = () => {
         My Classes
       </div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table ">
           <thead>
-            <tr>
+            <tr className={darkTheme && "text-neutral-200"}>
               <th>#</th>
               <th>Class Name</th>
               <th>Class Code</th>
@@ -38,7 +40,7 @@ const MyClass = () => {
             </tr>
           </thead>
           {isLoading && <LoadingAnimation />}
-          <tbody>
+          <tbody className={`${darkTheme && "text-neutral-300"}`}>
             {myClassData?.map((singleClassData, index) => {
               const {
                 approved_status,

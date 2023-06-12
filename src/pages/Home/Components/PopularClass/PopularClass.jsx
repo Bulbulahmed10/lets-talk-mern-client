@@ -8,7 +8,7 @@ const PopularClass = () => {
   const { data: topSixClass = [], isLoading } = useQuery({
     queryKey: "popularClasses",
     queryFn: async () => {
-      const res = await axios("http://localhost:5000/topSixClass");
+      const res = await axios("https://lets-talk-school.vercel.app/topSixClass");
       return res.data;
     },
   });

@@ -4,6 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import { FaQuoteRight } from "react-icons/fa";
 import Marquee from "react-fast-marquee";
 import SectionHeading from "../../../../shared/SectionHeading/SectionHeading";
+import { Fade } from "react-awesome-reveal";
 
 const testimonialData = [
   {
@@ -78,7 +79,7 @@ const Testimonial = () => {
               </div>
               <FaQuoteRight />
             </div>
-            <p>{singleTestimonial.message.slice(0, 220)}...</p>
+            <p> {singleTestimonial.message.slice(0, 220)}...</p>
           </div>
         ))}
       </Marquee>

@@ -36,6 +36,7 @@ const Navbar = () => {
   return (
     <div className="z-50 relative">
       <div
+        data-aos="zoom-out"
         className={`fixed max-w-7xl bg-[#fff] border-b-2 font-OpenSans mx-auto right-0 left-0 top-0 py-4 transition-all duration-500 ${
           isScrolled ? "-translate-y-full" : "translate-y-0"
         }`}>

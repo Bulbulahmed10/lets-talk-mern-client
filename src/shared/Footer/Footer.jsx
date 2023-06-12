@@ -6,6 +6,7 @@ import { GoLocation } from "react-icons/go";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsTwitter } from "react-icons/bs";
 import { SiSkype } from "react-icons/si";
+import { Fade } from "react-awesome-reveal";
 const Footer = () => {
   return (
     <>
@@ -16,7 +17,7 @@ const Footer = () => {
             <p className="text-3xl text-white">Lets Talk</p>
           </div>
           <p className="text-[#ffffff4d] mt-4">
-          Are you ready to embark on an exciting journey of language learning? Look no further than Lets Talk, your premier language school dedicated to helping individuals of all ages and backgrounds achieve proficiency in their desired languages. 
+          <Fade>Are you ready to embark on an exciting journey of language learning? Look no further than Lets Talk, your premier language school dedicated to helping individuals of all ages and backgrounds achieve proficiency in their desired languages.</Fade> 
           </p>
         </div>
 
@@ -24,7 +25,7 @@ const Footer = () => {
           <p className="text-[#fff] text-lg font-semibold font-Poppins border-b-2 border-b-[#01A2A6] w-fit pb-2">
             About Lets Talk
           </p>
-          <ul className="text-white list-disc mt-6 flex flex-col gap-2">
+          <ul data-aos="zoom-in" className="text-white list-disc mt-6 flex flex-col gap-2">
             <li className="border-b border-gray-600">
               <a
                 className="text-[#ffffff4d] capitalize font-OpenSans hover:text-gray-300 duration-300"
@@ -59,7 +60,7 @@ const Footer = () => {
           <p className="text-[#fff] text-lg font-semibold font-Poppins border-b-2 border-b-[#01A2A6] w-fit pb-2">
             Trainers
           </p>
-          <ul className="text-white list-disc mt-6 flex flex-col gap-2">
+          <ul data-aos="zoom-out" className="text-white list-disc mt-6 flex flex-col gap-2">
             <li className="border-b border-gray-600">
               <a
                 className="text-[#ffffff4d] capitalize font-OpenSans hover:text-gray-300 duration-300"
@@ -94,7 +95,7 @@ const Footer = () => {
           <p className="text-[#fff] text-lg font-semibold font-Poppins border-b-2 border-b-[#01A2A6] w-fit pb-2">
             Contact Info
           </p>
-          <ul className="text-white mt-6 flex flex-col gap-2">
+          <ul data-aos="zoom-in" className="text-white mt-6 flex flex-col gap-2">
             <li className="flex items-center gap-2">
               <AiOutlineMail />
               <a

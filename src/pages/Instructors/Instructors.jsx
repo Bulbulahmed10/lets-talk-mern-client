@@ -5,6 +5,7 @@ import { FiMail } from "react-icons/fi";
 import LoadingAnimation from "../../shared/LoadingAnimation/LoadingAnimation";
 import SectionHeading from "../../shared/SectionHeading/SectionHeading";
 import { useLocation } from "react-router-dom";
+import { Zoom } from "react-awesome-reveal";
 const Instructors = () => {
   const location = useLocation();
   const { data: allInstructors = [], isLoading } = useQuery({
@@ -24,20 +25,24 @@ const Instructors = () => {
       <div className="grid grid-cols-4">
         {allInstructors?.map((instructor) => {
           return (
-            <div
-              key={instructor._id}
-              className="bg-white rounded-lg shadow-lg p-6">
-              <img
-                src={instructor.profilePictureURL}
-                alt={instructor.name}
-                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-              />
-              <h2 className="text-xl font-semibold mb-2">{instructor.name}</h2>
-              <div className="flex items-center mb-4">
-                <FiMail className="mr-2" />
-                <p className="text-gray-600">{instructor.email}</p>
+            <Zoom>
+              <div
+                key={instructor._id}
+                className="bg-white rounded-lg shadow-lg p-6">
+                <img
+                  src={instructor.profilePictureURL}
+                  alt={instructor.name}
+                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                />
+                <h2 className="text-xl font-semibold mb-2">
+                  {instructor.name}
+                </h2>
+                <div className="flex items-center mb-4">
+                  <FiMail className="mr-2" />
+                  <p className="text-gray-600">{instructor.email}</p>
+                </div>
               </div>
-            </div>
+            </Zoom>
           );
         })}
       </div>

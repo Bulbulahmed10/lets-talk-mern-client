@@ -8,7 +8,7 @@ import sponsorImg5 from "../../../../assets/sponsorLogo/627e252afb8551d41bf21cd6
 import sponsorImg6 from "../../../../assets/sponsorLogo/627e28f0fb8551d41bf21ce9.png";
 import sponsorImg7 from "../../../../assets/sponsorLogo/harvard.png";
 import SectionHeading from "../../../../shared/SectionHeading/SectionHeading";
-
+import { Zoom } from "react-awesome-reveal";
 const Sponsor = () => {
   const sponsorLogos = [
     { id: 1, name: "Harvard University", image: sponsorImg1 },
@@ -33,13 +33,15 @@ const Sponsor = () => {
       <SectionHeading heading="Our Sponsor" />
       <Marquee speed={40} gradient={false} pauseOnHover={true}>
         {sponsorLogos.map((sponsor) => (
-          <div key={sponsor.id} className="px-4 py-2">
-            <img
-              src={sponsor.image}
-              alt={sponsor.name}
-              className="w-32 sm:w-24 md:w-28 lg:w-36 xl:w-44 h-auto object-contain"
-            />
-          </div>
+          <>
+            <div data-aos="zoom-in" key={sponsor.id} className="px-4 py-2">
+              <img
+                src={sponsor.image}
+                alt={sponsor.name}
+                className="w-32 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto object-contain"
+              />
+            </div>
+          </>
         ))}
       </Marquee>
     </div>

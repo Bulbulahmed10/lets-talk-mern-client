@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineClockCircle, AiOutlineBook } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 import useAuthContext from "../../hooks/useAuthContext";
@@ -10,6 +10,8 @@ import toastConfig from "../../utils/toastConfig";
 import useCart from "../../hooks/useCart";
 import useInstructor from "../../hooks/useInstructor";
 import useAdmin from "../../hooks/useAdmin";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const ClassCard = ({ singleTopClass }) => {
   const {
     class_image,
@@ -61,10 +63,14 @@ const ClassCard = ({ singleTopClass }) => {
     }
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 1500 });
+  }, []);
+
   const availableSeats = total_sets - enrolledStudentsId.length;
 
   return (
-    <div
+    <div data-aos="zoom-in"
       className={`${
         availableSeats === 0 ? "bg-red-200" : "bg-white"
       } shadow-lg rounded-lg overflow-hidden`}>

@@ -78,7 +78,7 @@ const ClassCard = ({ singleTopClass }) => {
         availableSeats === 0
           ? `"bg-red-200" ${darkTheme && "bg-red-600 bg-opacity-50"}`
           : `"bg-white" ${darkTheme && "bg-black border border-neutral-500"}`
-      } shadow-lg rounded-lg overflow-hidden ${
+      } shadow-lg rounded-lg overflow-hidden mb-6 ${
         darkTheme && "text-neutral-200"
       }`}>
       <img

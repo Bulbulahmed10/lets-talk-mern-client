@@ -5,15 +5,25 @@ import Footer from "../shared/Footer/Footer";
 import useDarkTheme from "../hooks/useDarkTheme";
 
 const MainLayout = () => {
-  const {darkTheme} = useDarkTheme()
+  const { darkTheme } = useDarkTheme();
   return (
-    <div className={`w-full px-[50px] mx-auto ${darkTheme && "bg-black"}`}>
-      <Header />
-      <div className="mt-[120px]">
-        <Outlet />
+    <>
+      <div
+        className={`w-full overflow-x-hidden px-[10px] md:px-[50px] mx-auto ${
+          darkTheme && "bg-black"
+        }`}>
+        <Header />
+        <div className="mt-[120px]">
+          <Outlet />
+        </div>
       </div>
-      <Footer />
-    </div>
+      <div
+        className={`w-full overflow-x-hidden md:px-[50px] mx-auto ${
+          darkTheme && "bg-black"
+        }`}>
+        <Footer />
+      </div>
+    </>
   );
 };
 

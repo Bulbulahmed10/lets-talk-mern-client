@@ -10,14 +10,19 @@ import { Fade } from "react-awesome-reveal";
 const Footer = () => {
   return (
     <>
-      <div className="grid grid-cols-4 gap-16 bg-[#3D3D47] px-8 py-16 mt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 bg-[#3D3D47] px-4 md:px-8 py-8 md:py-16 mt-4">
         <div>
           <div className="flex items-center gap-2">
             <img className="w-16" src={logo} alt="" />
             <p className="text-3xl text-white">Lets Talk</p>
           </div>
           <p className="text-[#ffffff4d] mt-4">
-          <Fade>Are you ready to embark on an exciting journey of language learning? Look no further than Lets Talk, your premier language school dedicated to helping individuals of all ages and backgrounds achieve proficiency in their desired languages.</Fade> 
+            <Fade>
+              Are you ready to embark on an exciting journey of language
+              learning? Look no further than Lets Talk, your premier language
+              school dedicated to helping individuals of all ages and
+              backgrounds achieve proficiency in their desired languages.
+            </Fade>
           </p>
         </div>
 
@@ -25,7 +30,9 @@ const Footer = () => {
           <p className="text-[#fff] text-lg font-semibold font-Poppins border-b-2 border-b-[#01A2A6] w-fit pb-2">
             About Lets Talk
           </p>
-          <ul data-aos="zoom-in" className="text-white list-disc mt-6 flex flex-col gap-2">
+          <ul
+            data-aos="zoom-in"
+            className="text-white md:list-disc mt-6 flex flex-col gap-2">
             <li className="border-b border-gray-600">
               <a
                 className="text-[#ffffff4d] capitalize font-OpenSans hover:text-gray-300 duration-300"
@@ -60,7 +67,9 @@ const Footer = () => {
           <p className="text-[#fff] text-lg font-semibold font-Poppins border-b-2 border-b-[#01A2A6] w-fit pb-2">
             Trainers
           </p>
-          <ul data-aos="zoom-out" className="text-white list-disc mt-6 flex flex-col gap-2">
+          <ul
+            data-aos="zoom-out"
+            className="text-white md:list-disc mt-6 flex flex-col gap-2">
             <li className="border-b border-gray-600">
               <a
                 className="text-[#ffffff4d] capitalize font-OpenSans hover:text-gray-300 duration-300"
@@ -95,7 +104,9 @@ const Footer = () => {
           <p className="text-[#fff] text-lg font-semibold font-Poppins border-b-2 border-b-[#01A2A6] w-fit pb-2">
             Contact Info
           </p>
-          <ul data-aos="zoom-in" className="text-white mt-6 flex flex-col gap-2">
+          <ul
+            data-aos="zoom-in"
+            className="text-white mt-6 flex flex-col gap-2">
             <li className="flex items-center gap-2">
               <AiOutlineMail />
               <a
@@ -119,14 +130,14 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="flex items-center justify-between font-OpenSans text-[#ffffff4d] bg-[#3D3D47] px-8 pb-2">
+      <div className="md:flex items-center justify-between font-OpenSans text-[#ffffff4d] bg-[#3D3D47] px-4 md:px-8 pb-4 md:pb-2">
         <p>
           <a className="hover:text-gray-300 duration-300" href="#">
             Privacy Policy
           </a>
           / Lets Talk - Bulbul Ahmed © 2023 / All Rights Reserved
         </p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-2 md:mt-0">
           <a href="https://www.linkedin.com/in/bulbul-ahmed10/" target="_blank">
             <FaLinkedinIn
               title="Linkedin"

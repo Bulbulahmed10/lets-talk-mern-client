@@ -17,7 +17,7 @@ const PopularClass = () => {
     <div>
       <SectionHeading heading="Popular Classes" />
       {isLoading && <LoadingAnimation />}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4">
         {topSixClass?.length > 0 &&
           topSixClass?.map((singleTopClass) => (
             <ClassCard

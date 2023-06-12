@@ -24,7 +24,7 @@ const Instructors = () => {
       {location.pathname === "/" && (
         <SectionHeading heading="Our Featured Instructor" />
       )}
-      <div className="grid grid-cols-4 pt-14 -mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pt-14 -mt-8">
         {allInstructors?.map((instructor) => {
           return (
             <Zoom key={instructor._id}>

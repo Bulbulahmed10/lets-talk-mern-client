@@ -37,7 +37,7 @@ const Sponsor = () => {
             <img
               src={sponsor.image}
               alt={sponsor.name}
-              className="w-32 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto object-contain"
+              className="w-16 md:w-28 lg:w-32 xl:w-36 h-auto object-contain"
             />
           </div>
         ))}

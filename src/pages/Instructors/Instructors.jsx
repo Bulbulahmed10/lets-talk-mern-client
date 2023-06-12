@@ -24,15 +24,16 @@ const Instructors = () => {
       {location.pathname === "/" && (
         <SectionHeading heading="Our Featured Instructor" />
       )}
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 pt-14 -mt-8">
         {allInstructors?.map((instructor) => {
           return (
             <Zoom key={instructor._id}>
               <div
                 key={instructor._id}
-                className={`bg-white ${
-                  darkTheme &&
-                  "bg-black border border-neutral-400 text-neutral-200"
+                className={`${
+                  darkTheme
+                    ? "bg-dark border border-neutral-400 text-neutral-200"
+                    : "bg-white"
                 } rounded-lg shadow-lg p-6`}>
                 <img
                   src={instructor.profilePictureURL}

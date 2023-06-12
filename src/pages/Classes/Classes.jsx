@@ -17,64 +17,11 @@ const Classes = () => {
     },
   });
 
-  // const handleSelectCourse = () => {
-  //   if (!user) {
-  //     alert("Please log in before selecting the course.");
-  //     return;
-  //   }
 
-  //   if (course.availableSeats === 0 || isAdminOrInstructor) {
-  //     return;
-  //   }
-  // };
-
-  // const cardBackground =
-  //   course.availableSeats === 0 ? "bg-red-200" : "bg-white";
-
-  console.log(allClasses);
   return (
-    <div className="grid grid-cols-4 gap-4">
-
-    
-
+    <div className="grid grid-cols-4 gap-4 pt-12 -mt-6">
       {allClasses?.map((singleClass) => {
-        const {
-          class_image,
-          class_name,
-          total_sets,
-          price,
-          enrolledStudentsId,
-        } = singleClass;
-        const availableSeats = total_sets - enrolledStudentsId.length 
-        return (
-
-          <ClassCard singleTopClass={singleClass} />
-
-          // <div className={`rounded-lg shadow-lg p-6 `}>
-          //   <img
-          //     src={class_image}
-          //     alt={class_name}
-          //     className="w-full h-48 object-cover mb-4 rounded-md"
-          //   />
-          //   <h2 className="text-xl font-semibold mb-2">{class_name}</h2>
-          //   <div className="flex items-center mb-2">
-          //     <FiUser className="mr-2" />
-          //     <p>{`Available Seats: ${availableSeats}`}</p>
-          //   </div>
-          //   <div className="flex items-center mb-4">
-          //     <FiDollarSign className="mr-2" />
-          //     <p>{`Price: ${price}`}</p>
-          //   </div>
-            // <button
-            //   className={`bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md ${
-            //     isAdmin || isInstructor || availableSeats === 0 ? "opacity-50 cursor-not-allowed" : ""
-            //   }`}
-            //   // onClick={handleSelectCourse}
-            //   disabled={isAdmin || isInstructor || availableSeats === 0 }>
-            //   Select
-            // </button>
-          // </div>
-        );
+        return <ClassCard singleTopClass={singleClass} />;
       })}
     </div>
   );

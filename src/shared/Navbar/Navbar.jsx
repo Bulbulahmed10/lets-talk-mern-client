@@ -40,24 +40,24 @@ const Navbar = () => {
   return (
     <div className="z-50 relative">
       <div
-        className={`fixed w-full px-[120px] ${
+        className={`fixed w-full px-[10px] md:px-[50px] ${
           darkTheme ? "bg-black" : "bg-white"
         } border-b-2 font-OpenSans mx-auto right-0 left-0 top-0 py-4 transition-all duration-500 ${
           isScrolled ? "-translate-y-full" : "translate-y-0"
         }`}>
-        <div className="flex justify-between items-center ">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-[2px]">
+        <div className="flex justify-between items-center flex-wrap">
+          <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-[2px]">
               <CiLocationOn className="text-xl text-[#29c7f7] font-bold" />
               <p className="text-[11px] text-[#9f9fa7]">
                 Brooklyn, NY 10036, United States
               </p>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-1">
               <AiOutlineMobile className="text-xl text-[#29c7f7] font-bold" />
               <p className="text-[11px] text-[#9f9fa7]">1-800-123-1234</p>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-1">
               <AiOutlineMail className="text-xl text-[#29c7f7] font-bold" />
               <p className="text-[11px] text-[#9f9fa7]">
                 hi@letstalkschool.com
@@ -91,12 +91,19 @@ const Navbar = () => {
                 className="text-base text-[#9f9fa7] hover:text-[#29c7f7] duration-300"
               />
             </a>
+            <div className="hidden md:block">
             <DarkLightToggleButton />
+
+            </div>
           </div>
+          <div className="block md:hidden">
+          <DarkLightToggleButton />
+          </div>
+
         </div>
       </div>
       <div
-        className={`navbar fixed  w-full px-[120px] -mt-6 ${
+        className={`navbar fixed  w-full md:px-[50px] -mt-6 ${
           isScrolled && "-mt-8 pt-10"
         } ${
           darkTheme ? "bg-black" : "bg-white"
@@ -105,10 +112,10 @@ const Navbar = () => {
         }`}>
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost md:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-6 w-6 -ml-4 md:ml-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -136,12 +143,12 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <div className="flex gap-1">
-              <img className="h-[45px]" src={logo} alt="" />
+            <div className="md:flex md:gap-1">
+              <img className="hidden md:block h-[45px]" src={logo} alt="" />
               <p
                 className={`${
                   darkTheme ? "text-neutral-200" : "text-black"
-                } text-xl font-Poppins mt-2 font-semibold`}>
+                } md:text-xl font-Poppins md:mt-2 font-semibold `}>
                 Lets Talk
               </p>
             </div>
@@ -182,7 +189,7 @@ const Navbar = () => {
             {user && (
               <>
                 <li
-                  className={`font-Poppins ${
+                  className={`font-Poppins hidden md:block ${
                     darkTheme && "text-neutral-200"
                   } text-[#3d3d47] font-semibold`}>
                   <Link to="/dashboard">Dashboard</Link>
@@ -234,7 +241,7 @@ const Navbar = () => {
                 <div className="dropdown dropdown-hover dropdown-end">
                   <label tabIndex={0} className="cursor-pointer">
                     <img
-                      className="w-10 h-10 object-cover rounded-full dropdown
+                      className="w-8 h-8 md:w-10 md:h-10 object-cover rounded-full dropdown
             "
                       src={user && user?.photoURL ? user?.photoURL : noAvatar}
                       alt={

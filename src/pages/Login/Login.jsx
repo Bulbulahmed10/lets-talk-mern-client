@@ -37,7 +37,7 @@ const Login = () => {
           role: "student",
         };
         axios
-          .post("https://lets-talk-school.vercel.app/user", saveUserInfo)
+          .post("http://localhost:5000/user", saveUserInfo)
           .then((res) => {
             console.log(res);
             if (res.data.existUser) {

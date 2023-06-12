@@ -12,7 +12,7 @@ const Classes = () => {
   const { data: allClasses = [], isLoading } = useQuery({
     queryKey: "allClasses",
     queryFn: async () => {
-      const response = await axios("https://lets-talk-school.vercel.app/allClasses");
+      const response = await axios("http://localhost:5000/allClasses");
       return response.data;
     },
   });

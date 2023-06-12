@@ -55,7 +55,7 @@ const Registration = () => {
                     role: "student"
                   };
                   axios
-                    .post("https://lets-talk-school.vercel.app/user", saveUserInfo)
+                    .post("http://localhost:5000/user", saveUserInfo)
                     .then((res) => {
                       if (res.data.insertedId) {
                         toast.success("Registration Successful!", toastConfig);

@@ -19,7 +19,7 @@ const Cart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://lets-talk-school.vercel.app/cart/${id}`)
+          .delete(`http://localhost:5000/cart/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               refetch();
